@@ -3,17 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title>Inspire Travel</title>
     <!-- import css -->
 </head>
 <body>
-    <!-- landing page -->
+    <main>
+        <!-- landing page -->
+        <div class="start-image">
+            <div class="landing-page">
+                <nav role="navigation">
+                    <h1> Inspire Travel </h1>
+                        <form id="search-form">
+                            <input type="text" aria-label="search for a location" placeholder="New York, NY">
+                            <button type="submit">Inspire Me</button> 
+                        </form>
+                </nav>
+               
+                <div class="explain-box">
+                    <p class="explain-text">Want to travel somewhere? Type a location to get inspired to get on the road!</p>
+                </div>
+                    <section class="apis">Display APIs used</section>
+            </div>
+        </div>
 
-    <nav role="navigation">
-        <h1> Inspire Travel </h1>
-        <input type="text" aria-label="search for a location" placeholder="New York, NY">
-    </nav>
+        <!-- display page -->
+        <div class="results-page">
+            <h2 class="location">Display User Location Name</h2>
+            <section class="weather">Display location weather</section>
+            <section class="time">Display time</section>
+            <section class="photos">Display location images</section>
+        </div>
+    </main>
 
-    <!-- import js -->
+    <footer>
+        <p>
+
+    <script src="js/app.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </body>
 </html>
