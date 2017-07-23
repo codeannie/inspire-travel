@@ -1,7 +1,7 @@
 'use strict';
 
 const GOOGLE_PLACES = {
-    url : "https://maps.googleapis.com/maps/api/geocode/json",
+    url : "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
     key : "AIzaSyDWmnY0GfjllGfQUwp5ytwEcXudmS6axEo",
 };
 
@@ -13,14 +13,24 @@ function listenForInput() {
     })
 }
 
+function initPlaces(inputElem) {
+    var autocomplete = new google.maps.places.Autocomplete(inputElem);
+    autocomplete.addListener('place_changed', function () {
+    console.log("test");
+    })
+    // var place = autocomplete.getPlace();
+}
 
 // var getLocationGeocode = function(searchLocation) {
 //     const query = {
-//         part:
-//         key:
-//         q:
+//         key: GOOGLE_PLACES.key,
+//         location:
+//         radius:
 //     }
 //     $.getJSON(GOOGLE_PLACES.url, )
 // }
 
+const inputElem = $('.js-searchLocation')[0];
+
 listenForInput();
+initPlaces(inputElem);
