@@ -5,17 +5,23 @@ const GOOGLE_PLACES = {
     key : "AIzaSyDWmnY0GfjllGfQUwp5ytwEcXudmS6axEo",
 };
 
+const STATE = {
+    googlePlace : null
+}
+
 function listenForInput() {
     $("#search-form").submit(event => {
         event.preventDefault();
         var searchLocation = $(".js-searchLocation").val();
-        console.log(searchLocation);
+        // console.log(searchLocation);
     })
 }
 
 function initPlaces(inputElem) {
     var autocomplete = new google.maps.places.Autocomplete(inputElem, {types: ['(cities)']});
     autocomplete.addListener('place_changed', function () {
+        STATE.googlePlace = autocomplete.getPlace();
+        
     })
     // var place = autocomplete.getPlace();
 }
@@ -29,6 +35,7 @@ function initPlaces(inputElem) {
 //     $.getJSON(GOOGLE_PLACES.url, )
 // }
 
+//for DOM related functions
 $(function(){
 const inputElem = $('.js-searchLocation')[0];
 listenForInput();
