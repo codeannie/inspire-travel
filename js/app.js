@@ -14,9 +14,8 @@ function listenForInput() {
 }
 
 function initPlaces(inputElem) {
-    var autocomplete = new google.maps.places.Autocomplete(inputElem);
+    var autocomplete = new google.maps.places.Autocomplete(inputElem, {types: ['(cities)']});
     autocomplete.addListener('place_changed', function () {
-    console.log("test");
     })
     // var place = autocomplete.getPlace();
 }
@@ -30,7 +29,8 @@ function initPlaces(inputElem) {
 //     $.getJSON(GOOGLE_PLACES.url, )
 // }
 
+$(function(){
 const inputElem = $('.js-searchLocation')[0];
-
 listenForInput();
 initPlaces(inputElem);
+})
