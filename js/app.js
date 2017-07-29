@@ -28,15 +28,16 @@ const HTML = {
 
 const STATE = {
     googlePlace : null,
-    geoLoc: null
+    geoLoc: null,
+    cityKey: null,
 }
 
-//GET LOCATION (Longitutde & Latitude) 
+//GET LOCATION 
 function userSubmit() {
     $("#search-form").submit(event => {
         event.preventDefault();
         var searchLocation = $(".js-searchLocation").val();
-        // console.log(searchLocation);
+        //need to store this entry? 
     })
 }
 
@@ -63,16 +64,26 @@ function initPlaces(inputElem) {
     //   "Longitude": 139.809,
 
 function getCityData() {
-    let parameter = {
-        q : "tokyo",
+    let param = {
+        q : `${STATE.googlePlace}`,
         apikey: ACCUWEATHER.key,
     };
 
-    $.getJSON(ACCUWEATHER.cities_url, parameter).then(function(json){
-    console.log(json); 
-    })
-    }
+    $.getJSON(ACCUWEATHER.cities_url, param)
+        // .then(function(json)
+        // console.log(json); 
+        STATE.cityKey = key,  
+    console.log(STATE.cityKey); 
+}
 
+function getForecastData() {
+    let param = {
+        q : `${STATE.cityKey}`,
+        apikey: ACCUWEATHER.key,
+    };
+    $.geJSON(ACCUWEATHER.forecast_url, param)
+
+}
 
 // TIME 
 
@@ -81,18 +92,10 @@ function getCityData() {
 //research AJAX $(document).ready() - line 69 and on is short hand 
 //don't load line 69~ javascript until DOM is ready
 //for DOM related functions 
+
 $(function(){
 const inputElem = $('.js-searchLocation')[0];
 userSubmit();
 initPlaces(inputElem);
 getCityData();
 })
-
-// var getLocationGeocode = function(searchLocation) {
-//     const query = {
-//         key: GOOGLE_PLACES.key,
-//         location:
-//         radius:
-//     }
-//     $.getJSON(GOOGLE_PLACES.url, )
-// }
