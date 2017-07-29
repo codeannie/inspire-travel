@@ -6,9 +6,9 @@ const G_PLACESINFO = {
 };
 
 const ACCUWEATHER = {
-    geoposition_url: "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search",
-    location_url : "http://dataservice.accuweather.com/locations/v1/cities/search",
-    forecast_url : "http://dataservice.accuweather.com/forecasts/v1/daily/5day/",
+    geoposition_url: "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search",
+    cities_url : "https://dataservice.accuweather.com/locations/v1/cities/search",
+    forecast_url : "https://dataservice.accuweather.com/forecasts/v1/daily/5day/",
     key : "cx6Pjbnt98biCTe5Gz68RhiLGWPK5Nrp",
 };
 
@@ -59,16 +59,20 @@ function initPlaces(inputElem) {
 
 // WEATHER 
 
-function getWeatherData() {
+    //   "Latitude": 35.683,
+    //   "Longitude": 139.809,
+
+function getCityData() {
     let parameter = {
-        q : `${STATE.geoLoc}`,
-        key: W_UNDERGROUND.key,
-    }.
-    $.getJSON(W_UNDERGROUND.url, parameter).then(function(json){
+        q : "tokyo",
+        apikey: ACCUWEATHER.key,
+    };
+
+    $.getJSON(ACCUWEATHER.cities_url, parameter).then(function(json){
     console.log(json); 
     })
-    // console.log(getWeatherData);
     }
+
 
 // TIME 
 
@@ -81,7 +85,7 @@ $(function(){
 const inputElem = $('.js-searchLocation')[0];
 userSubmit();
 initPlaces(inputElem);
-getWeatherData();
+getCityData();
 })
 
 // var getLocationGeocode = function(searchLocation) {
