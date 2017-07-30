@@ -30,18 +30,9 @@ const STATE = {
 }
 
 //GET LOCATION 
-function userSubmit() {
-    $("#search-form").submit(event => {
-        event.preventDefault();
-        if (STATE.googlePlace.id === undefined) {
-            alert('Please select a place!')
-        }
-        // var searchLocation = $(".js-searchLocation").val();
-        // getCityData();
-    })
-}
 
 // Get information from Google API - lat, long, name 
+// Should this function name be changed?
 function initPlaces(inputElem) {
     var autocomplete = new google.maps.places.Autocomplete(inputElem, {types: ['(cities)']});
     autocomplete.addListener('place_changed', function () {
@@ -50,10 +41,17 @@ function initPlaces(inputElem) {
         STATE.geoLat = STATE.googlePlace.geometry.location.lat();
         STATE.geoLng = STATE.googlePlace.geometry.location.lng();
         STATE.cityName = STATE.googlePlace.formatted_address;
-        // console.log(STATE.cityName);
+
         getCityData();
         getLocationTime();
+        displayLocationName();
     })
+}
+
+//Display Location Name -- why does it go to NULL? 
+function displayLocationName() {
+    $(".location-name").text(`${STATE.cityKey}`);
+    // console.log(displayLocationName);
 }
 
 // WEATHER 
@@ -97,6 +95,8 @@ function getForecastData(json_weather) {
 
 //use ANGULAR 
 
+// TIME 
+
 // GET USER TIME
 function getUserTime () {
     var date = moment().format("MMMM Do YY, h:mm:ss a");
@@ -105,19 +105,33 @@ function getUserTime () {
 
 // GET SUBMITTED LOCATION TIME
 function getLocationTime () {
-    var targetDate = new Date()
+    var targetDate = new Date() // Current date/time of user computer
     var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
     let param = {
         location: `${STATE.geoLat},${STATE.geoLng}`,
+        // Current UTC date/time expressed as seconds since midnight, January 1, 1970 UTC
         timestamp: targetDate.getTime()/1000 + targetDate.getTimezoneOffset() * 60,
         key: GOOGLE.key, 
     }
+
     $.getJSON(GOOGLE.timezone_url, param)
     .then(function(json_time) {
-     console.log(json_time);
+    //  console.log(json_time);
+
     })
 }
 // PHOTOS
+
+function handleSubmit() {
+    $("#search-form").submit(event => {
+        event.preventDefault();
+        if (STATE.googlePlace.id === undefined) {
+            alert('Select a location !')
+        }
+        // var searchLocation = $(".js-searchLocation").val();
+        // getCityData();
+    })
+}
 
 //research AJAX $(document).ready()
 //don't load line 69~ javascript until DOM is ready
@@ -125,7 +139,7 @@ function getLocationTime () {
 $(function(){
 const inputElem = $('.js-searchLocation')[0];
 initPlaces(inputElem);
-userSubmit();
+handleSubmit();
 getUserTime();
 // getLocationTime();
 // getCityData();
