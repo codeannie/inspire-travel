@@ -28,9 +28,16 @@ const HTML = {
 
 const STATE = {
     googlePlace : null,
-    geoLoc: null,
+    geoLat: null,
+    geoLng: null,
     cityKey: null,
 }
+
+var UserLocation = {
+    latitude: undefined,
+    longitude: undefined,
+    city: undefined,
+};
 
 //GET LOCATION 
 function userSubmit() {
@@ -44,10 +51,12 @@ function initPlaces(inputElem) {
     var autocomplete = new google.maps.places.Autocomplete(inputElem, {types: ['(cities)']});
     autocomplete.addListener('place_changed', function () {
         STATE.googlePlace = autocomplete.getPlace();
-        STATE.geoLoc = {
-            lat: STATE.googlePlace.geometry.location.lat(),
-            long: STATE.googlePlace.geometry.location.lng()
-        }
+        STATE.geolat = STATE.googlePlace.geometry.location.lat(),
+        STATE.geoLng = STATE.googlePlace.geometry.location.lng(),
+        // STATE.geoLoc = {
+        //     lat: STATE.googlePlace.geometry.location.lat(),
+        //     long: STATE.googlePlace.geometry.location.lng()
+        // }
         console.log(STATE.geoLoc);
     })
     // var place = autocomplete.getPlace();
@@ -63,9 +72,9 @@ function initPlaces(inputElem) {
 
 function getCityData() {
     let param = {
-        q : `${STATE.googlePlace}`,
+        q : `${STATE.geoLat}, ${STATE.geoLng}`,
         apikey: ACCUWEATHER.key,
-    };
+    }
 
     $.getJSON(ACCUWEATHER.geoposition_url, param)
         .then(getForecastData);
@@ -78,10 +87,18 @@ function getCityData() {
 }
 
 function getForecastData() {
+    
+    if(res[0]){
+        let weatherLocationKey = res[0].key;
+    
     let param = {
         apikey: ACCUWEATHER.key,
-    };
-    $.getJSON(ACCUWEATHER.forecast_url, param)
+    }
+
+    $.getJSON(ACCUWEATHER.forecast_url + weatherLoctitonKey, param)
+    .then (function (res) {
+
+    })
 
 }
 
