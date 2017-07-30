@@ -1,7 +1,8 @@
 'use strict';
 
-const G_PLACESINFO = {
-    url : "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
+const GOOGLE = {
+    places_url : "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
+    timezone_url : "https://maps.googleapis.com/maps/api/timezone/json",
     key : "AIzaSyDWmnY0GfjllGfQUwp5ytwEcXudmS6axEo",
 };
 
@@ -11,12 +12,6 @@ const ACCUWEATHER = {
     forecast_url : "https://dataservice.accuweather.com/forecasts/v1/daily/5day/",
     key : "cx6Pjbnt98biCTe5Gz68RhiLGWPK5Nrp",
 };
-
-// const W_UNDERGROUND = {
-//     // url : "http://api.wunderground.com/api/key/geolookup/q/json", //not sure if this is correct
-//     url: `"http://api.wunderground.com/api/”+ key +”/forecast/geolookup/conditions/q/" + Geo.lat + "," + Geo.lng + ".json"`,
-//     key : "774b008f96e3393e",
-// }
 
 const HTML = {
     landingPage: ".landing-page",
@@ -31,19 +26,13 @@ const STATE = {
     geoLat: null,
     geoLng: null,
     cityKey: null,
+    cityName: null,
 }
-
-// var UserLocation = {
-//     latitude: undefined,
-//     longitude: undefined,
-//     city: undefined,
-// };
 
 //GET LOCATION 
 function userSubmit() {
     $("#search-form").submit(event => {
         event.preventDefault();
-        console.log(STATE.googlePlace);
         if (STATE.googlePlace.id === undefined) {
             alert('Please select a place!')
         }
@@ -52,22 +41,23 @@ function userSubmit() {
     })
 }
 
+// Get information from Google API - lat, long, name 
 function initPlaces(inputElem) {
     var autocomplete = new google.maps.places.Autocomplete(inputElem, {types: ['(cities)']});
     autocomplete.addListener('place_changed', function () {
         STATE.googlePlace = autocomplete.getPlace();
+        console.log(STATE.googlePlace);
         STATE.geoLat = STATE.googlePlace.geometry.location.lat();
         STATE.geoLng = STATE.googlePlace.geometry.location.lng();
-        // console.log(STATE);
+        STATE.cityName = STATE.googlePlace.formatted_address;
+        console.log(STATE.cityName);
         getCityData();
     })
 }
 
-// https://github.com/getify/You-Dont-Know-JS/blob/master/async%20%26%20performance/ch3.md
-// Doug Mason & Russel Thomas - Promises 
-
 // WEATHER 
-// 35.683,139.809
+
+//PLUG IN GEO DATA INTO FORECAST API 
 function getCityData() {
     let param = {
         q : `${STATE.geoLat},${STATE.geoLng}`,
@@ -91,8 +81,22 @@ function getForecastData(json) {
     })
 }
 
-// TIME 
+//display Forecast into boxes - 1 day? 3 day? 
+function weatherHTML() {
 
+}
+
+// USER LOCAL TIME
+function getUserTime () {
+    var date = moment().format("MMMM Do YY, h:mm:ss a");
+    console.log(date);
+}
+// LOCATION TIME
+// function getLocationTime () {
+//     let param = {
+//         q: 
+//     }
+// }
 // PHOTOS
 
 //research AJAX $(document).ready() - line 69 and on is short hand 
@@ -103,6 +107,10 @@ $(function(){
 const inputElem = $('.js-searchLocation')[0];
 initPlaces(inputElem);
 userSubmit();
+getUserTime();
 // getCityData();
 // getForecastData();
 })
+
+// https://github.com/getify/You-Dont-Know-JS/blob/master/async%20%26%20performance/ch3.md
+// Doug Mason & Russel Thomas - Promises 
