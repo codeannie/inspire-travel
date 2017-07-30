@@ -33,17 +33,22 @@ const STATE = {
     cityKey: null,
 }
 
-var UserLocation = {
-    latitude: undefined,
-    longitude: undefined,
-    city: undefined,
-};
+// var UserLocation = {
+//     latitude: undefined,
+//     longitude: undefined,
+//     city: undefined,
+// };
 
 //GET LOCATION 
 function userSubmit() {
     $("#search-form").submit(event => {
         event.preventDefault();
-        var searchLocation = $(".js-searchLocation").val();
+        console.log(STATE.googlePlace);
+        if (STATE.googlePlace.id === undefined) {
+            alert('Please select a place!')
+        }
+        // var searchLocation = $(".js-searchLocation").val();
+        // getCityData();
     })
 }
 
@@ -51,55 +56,39 @@ function initPlaces(inputElem) {
     var autocomplete = new google.maps.places.Autocomplete(inputElem, {types: ['(cities)']});
     autocomplete.addListener('place_changed', function () {
         STATE.googlePlace = autocomplete.getPlace();
-        STATE.geolat = STATE.googlePlace.geometry.location.lat(),
-        STATE.geoLng = STATE.googlePlace.geometry.location.lng(),
-        // STATE.geoLoc = {
-        //     lat: STATE.googlePlace.geometry.location.lat(),
-        //     long: STATE.googlePlace.geometry.location.lng()
-        // }
-        console.log(STATE.geoLoc);
+        STATE.geoLat = STATE.googlePlace.geometry.location.lat();
+        STATE.geoLng = STATE.googlePlace.geometry.location.lng();
+        // console.log(STATE);
+        getCityData();
     })
-    // var place = autocomplete.getPlace();
 }
 
 // https://github.com/getify/You-Dont-Know-JS/blob/master/async%20%26%20performance/ch3.md
 // Doug Mason & Russel Thomas - Promises 
 
 // WEATHER 
-
-    //   "Latitude": 35.683,
-    //   "Longitude": 139.809,
-
+// 35.683,139.809
 function getCityData() {
     let param = {
-        q : `${STATE.geoLat}, ${STATE.geoLng}`,
+        q : `${STATE.geoLat},${STATE.geoLng}`,
         apikey: ACCUWEATHER.key,
     }
 
     $.getJSON(ACCUWEATHER.geoposition_url, param)
         .then(getForecastData);
-        // .then(function(json) {
-        //     return key; 
-        // };
-        // console.log(json); 
-        // STATE.cityKey = key,  
-    // console.log(STATE.cityKey); 
 }
 
-function getForecastData() {
-    
-    if(res[0]){
-        let weatherLocationKey = res[0].key;
-    
+function getForecastData(json) {
+    STATE.cityKey = json.Key;  
+
     let param = {
         apikey: ACCUWEATHER.key,
     }
 
-    $.getJSON(ACCUWEATHER.forecast_url + weatherLoctitonKey, param)
-    .then (function (res) {
-
+    $.getJSON(ACCUWEATHER.forecast_url + STATE.cityKey, param)
+    .then (function (json) {
+        console.log(json)
     })
-
 }
 
 // TIME 
@@ -112,8 +101,8 @@ function getForecastData() {
 
 $(function(){
 const inputElem = $('.js-searchLocation')[0];
-userSubmit();
 initPlaces(inputElem);
-getCityData();
+userSubmit();
+// getCityData();
 // getForecastData();
 })
