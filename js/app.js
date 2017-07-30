@@ -7,7 +7,7 @@ const G_PLACESINFO = {
 
 const ACCUWEATHER = {
     geoposition_url: "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search",
-    cities_url : "https://dataservice.accuweather.com/locations/v1/cities/search",
+    // cities_url : "https://dataservice.accuweather.com/locations/v1/cities/search",
     forecast_url : "https://dataservice.accuweather.com/forecasts/v1/daily/5day/",
     key : "cx6Pjbnt98biCTe5Gz68RhiLGWPK5Nrp",
 };
@@ -37,10 +37,8 @@ function userSubmit() {
     $("#search-form").submit(event => {
         event.preventDefault();
         var searchLocation = $(".js-searchLocation").val();
-        //need to store this entry? 
     })
 }
-
 
 function initPlaces(inputElem) {
     var autocomplete = new google.maps.places.Autocomplete(inputElem, {types: ['(cities)']});
@@ -69,19 +67,21 @@ function getCityData() {
         apikey: ACCUWEATHER.key,
     };
 
-    $.getJSON(ACCUWEATHER.cities_url, param)
-        // .then(function(json)
+    $.getJSON(ACCUWEATHER.geoposition_url, param)
+        .then(getForecastData);
+        // .then(function(json) {
+        //     return key; 
+        // };
         // console.log(json); 
-        STATE.cityKey = key,  
-    console.log(STATE.cityKey); 
+        // STATE.cityKey = key,  
+    // console.log(STATE.cityKey); 
 }
 
 function getForecastData() {
     let param = {
-        q : `${STATE.cityKey}`,
         apikey: ACCUWEATHER.key,
     };
-    $.geJSON(ACCUWEATHER.forecast_url, param)
+    $.getJSON(ACCUWEATHER.forecast_url, param)
 
 }
 
@@ -98,4 +98,5 @@ const inputElem = $('.js-searchLocation')[0];
 userSubmit();
 initPlaces(inputElem);
 getCityData();
+// getForecastData();
 })
