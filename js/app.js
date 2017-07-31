@@ -116,10 +116,36 @@ function getLocationTime () {
 
     $.getJSON(GOOGLE.timezone_url, param)
     .then(function(json_time) {
+        displayLocationTime();
     //  console.log(json_time);
-
     })
 }
+
+function displayLocationTime() {
+    if (json_time.status === 200){ // if Ajax request successful
+    var output = JSON.parse(json_time.responseText) // convert returned JSON string to JSON object
+    console.log(output.status) // log API return status for debugging purposes
+        
+        if (output.status == 'OK'){ // if API reports everything was returned successfully
+            var offsets = output.dstOffset * 1000 + output.rawOffset * 1000 // get DST and time zone offsets in milliseconds
+            var localdate = new Date(timestamp * 1000 + offsets) // Date object containing current time of Tokyo (timestamp + dstOffset + rawOffset)
+            // console.log(localdate.toLocaleString()) // Display current Tokyo date and time
+            var refreshDate = new Date() // get current date again to calculate time elapsed between targetDate and now
+            var millisecondselapsed = refreshDate - targetDate // get amount of time elapsed between targetDate and now
+            
+            localdate.setMilliseconds(localdate.getMilliseconds()+ millisecondselapsed) // update localdate to account for any time elapsed
+            
+            setInterval(function(){
+            localdate.setSeconds(localdate.getSeconds()+1)
+            container.innerHTML = localdate.toLocaleTimeString() + ' (' + daysofweek[ localdate.getDay() ] + ')'
+        }, 1000)
+    }
+       }else{
+        alert('Request failed.  Returned status of ' + json_time.status)
+        console.log(output);
+            }
+}
+
 // PHOTOS
 
 function handleSubmit() {
