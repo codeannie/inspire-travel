@@ -13,13 +13,19 @@ const ACCUWEATHER = {
     key : "cx6Pjbnt98biCTe5Gz68RhiLGWPK5Nrp",
 };
 
+const FLICKR = {
+    url: "https://flickr.photos.geo.photosForLocation",
+    key: "7faa8e131c5e122b2c8641a0f601cef6",
+    secret: "b37b20e78b51a47b",
+};
+
 const HTML = {
     landingPage: ".landing-page",
     searchForm: "#search-form",
     weather: ".weather",
     time: ".time",
     photos: ".photos"
-}
+};
 
 const STATE = {
     googlePlace : null,
@@ -27,7 +33,7 @@ const STATE = {
     geoLng: null,
     cityKey: null,
     cityName: null,
-}
+};
 
 //GET LOCATION 
 
@@ -46,6 +52,7 @@ function initPlaces(inputElem) {
         getLocationTime();
         displayLocationName();
     })
+    // console.log(STATE);
 }
 
 //Display Location Name -- why does it go to NULL? 
@@ -143,21 +150,45 @@ function displayLocationTime() {
        }else{
         alert('Request failed.  Returned status of ' + json_time.status)
         console.log(output);
-            }
+        }
+    $("#location-time").text(output);
 }
 
 // PHOTOS
+function getPhotoData() {
+    let param = {
+        lat: `${STATE.geoLat}`,
+        long: `${STATE.geoLng}`,
+        api_key: FLICKR.key,
+        per_page: 10,
+    }
+
+    $.getJSON(FLICKR.url, param)
+        .then()
+        console.log(json_photos)
+}
+
+// function displayPhotos() {
+//     let photoHTML = {}
+// }
+
 
 function handleSubmit() {
     $("#search-form").submit(event => {
         event.preventDefault();
         if (STATE.googlePlace.id === undefined) {
-            alert('Select a location !')
+            alert('Select a location!')
         }
         // var searchLocation = $(".js-searchLocation").val();
-        // getCityData();
     })
 }
+
+// function handleSubmit(event) {
+//     if(event) {
+//         event.preventDefault();
+//         return;
+//     }
+// }
 
 //research AJAX $(document).ready()
 //don't load line 69~ javascript until DOM is ready
