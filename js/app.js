@@ -104,7 +104,7 @@ function getForecastData(json_weather) {
 
 // TIME 
 
-// GET USER TIME
+// GET USER TIME -- not sure if this is necessary 
 function getUserTime () {
     var date = moment().format("MMMM Do YY, h:mm:ss a");
     // console.log(date);
@@ -122,11 +122,18 @@ function getLocationTime () {
     }
 
     $.getJSON(GOOGLE.timezone_url, param)
-    .then(function(json_time) {
-        displayLocationTime();
-    //  console.log(json_time);
-    })
+        .then(function(json_time) {
+        var dstOffset = json_time.dstOffset
+        var rawOffset = json_time.rawOffset
+        var locationDate = new Date((param.timestamp + dstOffset + rawOffset) * 1000);
+        // displayLocationTime();
+        console.log(locationDate);
+        })
 }
+
+// function displayLocationTimev2() {
+//     var localDate = new Date((timestamp + dstOffset + rawOffset) * 1000);
+// }
 
 function displayLocationTime() {
     if (json_time.status === 200){ // if Ajax request successful
@@ -163,9 +170,11 @@ function getPhotoData() {
         per_page: 10,
     }
 
-    $.getJSON(FLICKR.url, param)
-        .then()
-        console.log(json_photos)
+//     $.getJSON(FLICKR.url, param)
+//         .then(function (
+//         console.log()
+//         )
+//         console.log(json_photos)
 }
 
 // function displayPhotos() {
