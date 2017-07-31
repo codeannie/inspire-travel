@@ -114,7 +114,7 @@ function getUserTime () {
 // GET SUBMITTED LOCATION TIME
 function getLocationTime () {
     var targetDate = new Date() // Current date/time of user computer
-    var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
+    // var targetDate = moment().format('MMMM Do YYYY, h:mm:ss a');
     let param = {
         location: `${STATE.geoLat},${STATE.geoLng}`,
         // Current UTC date/time expressed as seconds since midnight, January 1, 1970 UTC
@@ -126,7 +126,13 @@ function getLocationTime () {
         .then(function(json_time) {
             var dstOffset = json_time.dstOffset
             var rawOffset = json_time.rawOffset
+            var timeZone = json_time.timeZoneId
+            // console.log(json_time);
             STATE.cityTime = new Date((param.timestamp + dstOffset + rawOffset) * 1000);
+
+            //using moment.js not calculating correctly
+            // STATE.cityTime = moment.tz(param.timestamp, timeZone).format("YYYY-MM-DD hh:mm:ss a");
+            // STATE.cityTime = moment.tz(param.timestamp, timeZone).format("ha z");
 
             // let timeHTML = 
             //     `{<div class="time-box">Location Time: <span id="location-time">${cityTime}</span></div>}`
@@ -135,6 +141,12 @@ function getLocationTime () {
             $("#location-time").text(STATE.cityTime);
         })
         // .append(timeHTML);
+}
+
+function displayLocationTime() {
+    var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
+    var refreshDate = new Date()
+    var milliSecondsLapsed = refreshDate - targetDate
 }
 
 // function displayLocationTime() {
@@ -160,7 +172,6 @@ function getLocationTime () {
 //         alert('Request failed.  Returned status of ' + json_time.status)
 //         console.log(output);
 //         }
-//     $("#location-time").text(output);
 // }
 
 // PHOTOS
