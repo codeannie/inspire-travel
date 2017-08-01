@@ -16,7 +16,8 @@ const ACCUWEATHER = {
 const FLICKR = {
     // url: "https://flickr.photos.geo.photosForLocation",
     // url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&",
-    url: "https://api.flickr.com/services/flickr.photos.search/",
+    // url: "https://api.flickr.com/services/flickr.photos.search/",
+    url: " https://api.flickr.com/services/rest/?method=flickr.photos.search&",
     // url: "https://api.flickr.com/services/flickr.photos.search/json/",
     key: "7faa8e131c5e122b2c8641a0f601cef6",
     secret: "b37b20e78b51a47b",
@@ -47,7 +48,9 @@ function initPlaces(inputElem) {
     var autocomplete = new google.maps.places.Autocomplete(inputElem, {types: ['(cities)']});
     autocomplete.addListener('place_changed', function () {
         STATE.googlePlace = autocomplete.getPlace();
-        // console.log(STATE.googlePlace);
+        // if there is no ID, we haven't gotten a real place
+        // so we want to exit the function;
+        if (!STATE.googlePlace.id) return;
         STATE.geoLat = STATE.googlePlace.geometry.location.lat();
         STATE.geoLng = STATE.googlePlace.geometry.location.lng();
         STATE.cityName = STATE.googlePlace.formatted_address;
@@ -55,6 +58,7 @@ function initPlaces(inputElem) {
         getCityData();
         getLocationTime();
         displayLocationName();
+        getPhotoData();
     })
     // console.log(STATE);
 }
@@ -145,13 +149,13 @@ function getLocationTime () {
 // PHOTOS
 function getPhotoData() {
     let param = {
-        lat: `${STATE.geoLat}`,
-        lon: `${STATE.geoLng}`,
+        // lat: `${STATE.geoLat}`,
+        // lon: `${STATE.geoLng}`,
         api_key: FLICKR.key,
-        privacy_filter: 1,
-        safe_search: 1, 
-        per_page: 10,
-        page: 3, 
+        // privacy_filter: 1,
+        // safe_search: 1, 
+        // per_page: 10,
+        // page: 3, 
     }
 
     $.getJSON(FLICKR.url, param)
@@ -171,10 +175,7 @@ function getPhotoData() {
 function handleSubmit() {
     $("#search-form").submit(event => {
         event.preventDefault();
-        if (STATE.googlePlace.id === undefined) {
-            alert('Select a location!')
-        }
-        // var searchLocation = $(".js-searchLocation").val();
+            return false;
     })
 }
 
