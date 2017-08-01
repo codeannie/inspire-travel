@@ -8,17 +8,12 @@ const GOOGLE = {
 
 const ACCUWEATHER = {
     geoposition_url: "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search",
-    // cities_url : "https://dataservice.accuweather.com/locations/v1/cities/search",
     forecast_url : "https://dataservice.accuweather.com/forecasts/v1/daily/5day/",
     key : "cx6Pjbnt98biCTe5Gz68RhiLGWPK5Nrp",
 };
 
 const FLICKR = {
-    // url: "https://flickr.photos.geo.photosForLocation",
-    // url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&",
-    // url: "https://api.flickr.com/services/flickr.photos.search/",
     url: " https://api.flickr.com/services/rest/?method=flickr.photos.search&",
-    // url: "https://api.flickr.com/services/flickr.photos.search/json/",
     key: "7faa8e131c5e122b2c8641a0f601cef6",
     secret: "b37b20e78b51a47b",
 };
@@ -43,15 +38,16 @@ const STATE = {
 //GET LOCATION 
 
 // Get information from Google API - lat, long, name 
-// Should this function name be changed?
 function initPlaces(inputElem) {
     var autocomplete = new google.maps.places.Autocomplete(inputElem, {types: ['(cities)']});
     autocomplete.addListener('place_changed', function () {
         STATE.googlePlace = autocomplete.getPlace();
+
         // if there is no ID, we haven't gotten a real place
         // so we want to exit the function;
         if (!STATE.googlePlace.id) return; 
         //need to add user facing alert
+
         STATE.geoLat = STATE.googlePlace.geometry.location.lat();
         STATE.geoLng = STATE.googlePlace.geometry.location.lng();
         STATE.cityName = STATE.googlePlace.formatted_address;
@@ -92,24 +88,8 @@ function getForecastData(json_weather) {
     $.getJSON(ACCUWEATHER.forecast_url + STATE.cityKey, param)
     .then (function (json_weather) {
     var data = json_weather
-     // console.log(json)
-
-    //notes from Kyle's office hours
-    //render parts needed from that variable/object
-    //using angular with {{}} <--this is more recommended & easier 
-    //set up HTML variables and use as syntax 
-        //data.celsius temp 
-    //jquery $(<insert class>) - to get
-        //more laborious
-
     })
 }
-
-//display Forecast into boxes - 1 day? 3 day? 
-// function weatherHTML() {
-// }
-
-//use ANGULAR to save time -- need to research
 
 // TIME 
 
@@ -136,10 +116,6 @@ function getLocationTime () {
             var timeZone = json_time.timeZoneId
             // console.log(json_time);
             STATE.cityTime = new Date((param.timestamp + dstOffset + rawOffset) * 1000);
-
-            //using moment.js -- not calculating correctly
-            // STATE.cityTime = moment.tz(param.timestamp, timeZone).format("YYYY-MM-DD hh:mm:ss a");
-            // STATE.cityTime = moment.tz(param.timestamp, timeZone).format("ha z");
 
             // console.log(STATE.cityTime);
             $("#location-time").text(STATE.cityTime); //how to format this output?
@@ -171,27 +147,15 @@ function getPhotoData() {
         })
 }
 
-// function displayPhotos() {
-//     let photoHTML = {}
-// }
-
-
+//prevents submit to happen
 function handleSubmit() {
     $("#search-form").submit(event => {
         event.preventDefault();
-            return false;
+        return false; //do nothing
     })
 }
 
-// function handleSubmit(event) {
-//     if(event) {
-//         event.preventDefault();
-//         return;
-//     }
-// }
-
-//research AJAX $(document).ready()
-//don't load line 69~ javascript until DOM is ready
+//don't load until DOM is ready
 //for DOM related functions 
 $(function(){
 const inputElem = $('.js-searchLocation')[0];
@@ -202,6 +166,3 @@ getUserTime();
 // getCityData();
 // getForecastData();
 });
-
-// https://github.com/getify/You-Dont-Know-JS/blob/master/async%20%26%20performance/ch3.md
-// Doug Mason & Russel Thomas - Promises 
