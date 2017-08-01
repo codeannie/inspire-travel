@@ -58,7 +58,7 @@ function initPlaces(inputElem) {
     // console.log(STATE);
 }
 
-//Display Location Name -- why does it go to NULL? 
+//Display Location Name 
 function displayLocationName() {
     $(".location-name").text(`${STATE.cityName}`);
 }
