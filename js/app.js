@@ -50,7 +50,8 @@ function initPlaces(inputElem) {
         STATE.googlePlace = autocomplete.getPlace();
         // if there is no ID, we haven't gotten a real place
         // so we want to exit the function;
-        if (!STATE.googlePlace.id) return;
+        if (!STATE.googlePlace.id) return; 
+        //need to add user facing alert
         STATE.geoLat = STATE.googlePlace.geometry.location.lat();
         STATE.geoLng = STATE.googlePlace.geometry.location.lng();
         STATE.cityName = STATE.googlePlace.formatted_address;
@@ -149,13 +150,14 @@ function getLocationTime () {
 // PHOTOS
 function getPhotoData() {
     let param = {
-        // lat: `${STATE.geoLat}`,
-        // lon: `${STATE.geoLng}`,
+        lat: `${STATE.geoLat}`,
+        lon: `${STATE.geoLng}`,
         api_key: FLICKR.key,
-        // privacy_filter: 1,
-        // safe_search: 1, 
-        // per_page: 10,
-        // page: 3, 
+        format: "json",
+        nojsoncallback: 1,
+        privacy_filter: 1,
+        safe_search: 1, 
+        per_page: 10,
     }
 
     $.getJSON(FLICKR.url, param)
@@ -164,6 +166,8 @@ function getPhotoData() {
             console.log(json_photos);
             // for (var i=0; i<json_photos.length; i++) {
             // }
+        }).catch(function(err){
+            console.log(err);
         })
 }
 
