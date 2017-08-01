@@ -16,7 +16,8 @@ const ACCUWEATHER = {
 const FLICKR = {
     // url: "https://flickr.photos.geo.photosForLocation",
     // url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&",
-    url: "https://api.flickr.com/services/flickr.photos.search/json/",
+    url: "https://api.flickr.com/services/rest/",
+    // url: "https://api.flickr.com/services/flickr.photos.search/json/",
     key: "7faa8e131c5e122b2c8641a0f601cef6",
     secret: "b37b20e78b51a47b",
 };
@@ -139,50 +140,59 @@ function getLocationTime () {
             //     `{<div class="time-box">Location Time: <span id="location-time">${cityTime}</span></div>}`
            
             // console.log(STATE.cityTime);
-            $("#location-time").text(STATE.cityTime);
+            $("#location-time").text(STATE.cityTime); //how to format this output?
         })
         // .append(timeHTML);
 }
 
-function displayLocationTime() {
-    var daysofweek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
-    var refreshDate = new Date()
-    var offsets = output.dstOffset * 1000 + output.rawOffset * 1000 // get DST and time zone offsets in milliseconds
-    var localdate = new Date(timestamp * 1000 + offsets) 
-    var milliSecondsLapsed = refreshDate - targetDate
-    localdate.setMilliseconds(localdate.getMilliseconds()+ millisecondsLapsed) // update localdate to account for any time elapsed
-        
-        setInterval(function(){
-            localdate.setSeconds(localdate.getSeconds()+1)
-            container.innerHTML = localdate.toLocaleTimeString() + ' (' + daysofweek[ localdate.getDay() ] + ')'
-            }, 1000)
-    alert ('is time working?');
-    console.log(container.innerHTML);
-
-}
-
 // PHOTOS
 function getPhotoData() {
-    let param = {
-        lat: `${STATE.geoLat}`,
-        lon: `${STATE.geoLng}`,
-        api_key: FLICKR.key,
-        privacy_filter: 1,
-        safe_search: 1, 
-        per_page: 10,
-        page: 3, 
-    }
+    $.ajax({
+        url: FLICKR.url,
+        data: {
+            method: "flickr.photos.search",
+            lat: `${STATE.geoLat}`,
+            lon: `${STATE.geoLng}`,
+            api_key: FLICKR.key,
+            privacy_filter: 1,
+            safe_search: 1, 
+            per_page: 10,
+            page: 2,
+            format: "json", 
+            nojsoncallback: 1
+        },
+        success: function(response) {
+            each(response.photos.photo, function (index,value) {
+                console.log(value);
+                var url = 'https://farm' + value.farm + '.staticflickr.com/' + value.server + '/' + value.id + '_' + value.secret + '.jpg';
+                var a = $('<a>').attr({href: url})
+                var img = $('img').attr({src: url})
+                a.append(img);
+                $("#image-gallery").append(a);
+            });
+            $("#image-gallery").justifiedGallery();
+        }
+    });
+}
 
-    $.getJSON(FLICKR.url, param)
-        .then(function(json_photos) {
+    // let param = {
+    //     lat: `${STATE.geoLat}`,
+    //     lon: `${STATE.geoLng}`,
+    //     api_key: FLICKR.key,
+    //     privacy_filter: 1,
+    //     safe_search: 1, 
+    //     per_page: 10,
+    //     page: 3, 
+    // }
+
+    // $.getJSON(FLICKR.url, param)
+    //     .then(function(json_photos) {
             // alert("Photos!");
             // console.log(json_photos);
-
             // for (var i=0, i<json_photos.length, i++) {
-
             // }
-        })
-}
+//         })
+// }
 
 // function displayPhotos() {
 //     let photoHTML = {}
