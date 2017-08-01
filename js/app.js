@@ -14,7 +14,9 @@ const ACCUWEATHER = {
 };
 
 const FLICKR = {
-    url: "https://flickr.photos.geo.photosForLocation",
+    // url: "https://flickr.photos.geo.photosForLocation",
+    // url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&",
+    url: "https://api.flickr.com/services/flickr.photos.search/json/",
     key: "7faa8e131c5e122b2c8641a0f601cef6",
     secret: "b37b20e78b51a47b",
 };
@@ -130,7 +132,7 @@ function getLocationTime () {
             // console.log(json_time);
             STATE.cityTime = new Date((param.timestamp + dstOffset + rawOffset) * 1000);
 
-            //using moment.js not calculating correctly
+            //using moment.js -- not calculating correctly
             // STATE.cityTime = moment.tz(param.timestamp, timeZone).format("YYYY-MM-DD hh:mm:ss a");
             // STATE.cityTime = moment.tz(param.timestamp, timeZone).format("ha z");
 
@@ -178,16 +180,24 @@ function displayLocationTime() {
 function getPhotoData() {
     let param = {
         lat: `${STATE.geoLat}`,
-        long: `${STATE.geoLng}`,
+        lon: `${STATE.geoLng}`,
         api_key: FLICKR.key,
+        privacy_filter: 1,
+        safe_search: 1, 
         per_page: 10,
+        page: 3, 
     }
 
-//     $.getJSON(FLICKR.url, param)
-//         .then(function (
-//         console.log()
-//         )
-//         console.log(json_photos)
+    $.getJSON(FLICKR.url, param)
+        .then(function(json_photos) {
+
+            alert("Photos!");
+            console.log(json_photos);
+
+            for (var i=0, i<json_photos.length, i++) {
+
+            }
+        })
 }
 
 // function displayPhotos() {
