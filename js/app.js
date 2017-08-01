@@ -60,8 +60,7 @@ function initPlaces(inputElem) {
 
 //Display Location Name -- why does it go to NULL? 
 function displayLocationName() {
-    $(".location-name").text(`${STATE.cityKey}`);
-    // console.log(displayLocationName);
+    $(".location-name").text(`${STATE.cityName}`);
 }
 
 // WEATHER 
@@ -190,13 +189,12 @@ function getPhotoData() {
 
     $.getJSON(FLICKR.url, param)
         .then(function(json_photos) {
+            // alert("Photos!");
+            // console.log(json_photos);
 
-            alert("Photos!");
-            console.log(json_photos);
+            // for (var i=0, i<json_photos.length, i++) {
 
-            for (var i=0, i<json_photos.length, i++) {
-
-            }
+            // }
         })
 }
 
