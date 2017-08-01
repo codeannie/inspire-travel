@@ -16,7 +16,7 @@ const ACCUWEATHER = {
 const FLICKR = {
     // url: "https://flickr.photos.geo.photosForLocation",
     // url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&",
-    url: "https://api.flickr.com/services/rest/",
+    url: "https://api.flickr.com/services/",
     // url: "https://api.flickr.com/services/flickr.photos.search/json/",
     key: "7faa8e131c5e122b2c8641a0f601cef6",
     secret: "b37b20e78b51a47b",
@@ -161,8 +161,9 @@ function getPhotoData() {
             format: "json", 
             nojsoncallback: 1
         },
+        
         success: function(response) {
-            each(response.photos.photo, function (index,value) {
+            $.each(response.photos.photo, function (index,value) {
                 console.log(value);
                 var url = 'https://farm' + value.farm + '.staticflickr.com/' + value.server + '/' + value.id + '_' + value.secret + '.jpg';
                 var a = $('<a>').attr({href: url})
