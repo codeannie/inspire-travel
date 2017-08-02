@@ -67,13 +67,12 @@ function displayLocationName() {
 
 // WEATHER 
 
-//PLUG IN GEO DATA INTO FORECAST API 
+//GET GEO DATA TO GET CITYKEY AND USE CITYKEY TO GET FORECAST API 
 function getCityData() {
     let param = {
         q : `${STATE.geoLat},${STATE.geoLng}`,
         apikey: ACCUWEATHER.key,
     }
-
     $.getJSON(ACCUWEATHER.geoposition_url, param)
         .then(getForecastData);
 }
@@ -84,10 +83,10 @@ function getForecastData(json_weather) {
     let param = {
         apikey: ACCUWEATHER.key,
     }
-
     $.getJSON(ACCUWEATHER.forecast_url + STATE.cityKey, param)
-    .then (function (json_weather) {
-    var data = json_weather
+        .then (function (forecast) {
+            var loc_forecast = forecast.DailyForecasts
+    //need to render weather data
     })
 }
 
@@ -108,7 +107,6 @@ function getLocationTime () {
         timestamp: targetDate.getTime()/1000 + targetDate.getTimezoneOffset() * 60,
         key: GOOGLE.key, 
     }
-
     $.getJSON(GOOGLE.timezone_url, param)
         .then(function(json_time) {
             var dstOffset = json_time.dstOffset
@@ -120,7 +118,6 @@ function getLocationTime () {
             // console.log(STATE.cityTime);
             $("#location-time").text(STATE.cityTime); //how to format this output?
         })
-        // .append(timeHTML);
 }
     
 // PHOTOS
@@ -135,7 +132,6 @@ function getPhotoData() {
         safe_search: 1, 
         per_page: 10,
     }
-
     $.getJSON(FLICKR.url, param)
         .then(function(json_photos) {
             console.log(json_photos.photos.photo[0]);
@@ -143,7 +139,6 @@ function getPhotoData() {
             //Flickr Photo Source URL
             // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
             var {farm, id, secret, server} = json_photos.photos.photo[0];
-            console.log(farm);
 
             // for (var i=0; i<json_photos.length; i++) {
             // }
