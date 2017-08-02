@@ -138,8 +138,13 @@ function getPhotoData() {
 
     $.getJSON(FLICKR.url, param)
         .then(function(json_photos) {
-            alert("Photos!");
-            console.log(json_photos);
+            console.log(json_photos.photos.photo[0]);
+
+            //Flickr Photo Source URL
+            // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+            var {farm, id, secret, server} = json_photos.photos.photo[0];
+            console.log(farm);
+
             // for (var i=0; i<json_photos.length; i++) {
             // }
         }).catch(function(err){
