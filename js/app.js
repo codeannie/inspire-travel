@@ -114,9 +114,11 @@ function getLocationTime () {
             var timeZone = json_time.timeZoneId
             // console.log(json_time);
             STATE.cityTime = new Date((param.timestamp + dstOffset + rawOffset) * 1000);
-
             // console.log(STATE.cityTime);
-            $("#location-time").text(STATE.cityTime); //how to format this output?
+
+            //how to format this output? 
+            //how to show time refreshed every minute?
+            $("#location-time").text(STATE.cityTime); 
         })
 }
     
@@ -139,8 +141,15 @@ function getPhotoData() {
             //Flickr Photo Source URL
             // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
             var {farm, id, secret, server} = json_photos.photos.photo[0];
+            console.log(farm);
 
             // for (var i=0; i<json_photos.length; i++) {
+                const photoHTML = (
+                    `<img src="https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg" 
+                        alt="image from ${STATE.cityName}"></a>`
+                );
+                console.log(photoHTML);
+                $(".photos").append(photoHTML);
             // }
         }).catch(function(err){
             console.log(err);
