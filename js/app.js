@@ -93,7 +93,16 @@ function getForecastData(json_weather) {
     }
     $.getJSON(ACCUWEATHER.forecast_url + STATE.cityKey, param)
         .then (function (forecast) {
-            var loc_forecast = forecast.DailyForecasts
+            const forecastElm = $(".weather");
+
+            const forecastItem = forecast.DailyForecasts[0];
+            const forecastIcon = forecastItem.Day.Icon;
+            const forecastPhrase = forecastItem.Day.IconPhrase;
+
+            console.log(forecastItem);
+            console.log(forecastIcon);
+
+            // <img src="https://developer.accuweather.com/sites/default/files/${}.png" width="75" height="45" alt="${}" title="${}">
     //need to render weather data
     })
 }
@@ -156,7 +165,7 @@ function getPhotoData() {
                     `<img src="https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg" 
                         alt="image from ${STATE.cityName}"></a>`
                 );
-                console.log(photoURL);
+                // console.log(photoURL);
                 $(".photos").append(photoURL);
             // }
         }).catch(function(err){
