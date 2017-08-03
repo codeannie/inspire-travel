@@ -95,17 +95,45 @@ function getForecastData(json_weather) {
         .then (function (forecast) {
             const forecastElm = $(".weather");
 
+            // var {Icon, IconPhrase} = forecast.DailyForecasts[0];
             const forecastItem = forecast.DailyForecasts[0];
             const forecastIcon = forecastItem.Day.Icon;
             const forecastPhrase = forecastItem.Day.IconPhrase;
+            const forecastMax = forecastItem.Temperature.Maximum.Value;
+            const forecastMin = forecastItem.Temperature.Minimum.Value;
+            const epoch = forecastItem.EpochDate;
 
-            console.log(forecastItem);
-            console.log(forecastIcon);
+            console.log(forecast);
 
-            // <img src="https://developer.accuweather.com/sites/default/files/${}.png" width="75" height="45" alt="${}" title="${}">
-    //need to render weather data
-    })
+            let weatherHTML = (
+                `<div class="weather-card">
+                    <img src="https://developer.accuweather.com/sites/default/files/${forecastIcon}-s.png" width="75" height="45" alt="icon for ${forecastPhrase}">
+                    <span class="weather-max> ${forecastMax} °F</span> <br>
+                    <span class="weather-min> ${forecastMin} °F</span> <br>
+                    <span class="weather-desc> ${forecastPhrase} </span> <br>  
+                    // ${epoch}.toLocaleString();
+                </div>`
+        )
+        forecastElm
+            .append(weatherHTML);
+            console.log(weatherHTML);
+    });
 }
+
+// getFormattedDate(forecastItem.EpochDate);
+
+// function getFormatedDate() {
+    
+//     var today = new Date();
+//     var dd = today.getDate();
+//     var mm = today.getMonth() + 1;
+
+//     if(dd < 10) { dd = '0' + dd; }
+//     if(mm < 10) { mm = '0' + mm; }
+
+//     return dd+'/'+mm+'/' + today.getFullYear();
+    
+// }
 
 // TIME 
 
@@ -158,7 +186,7 @@ function getPhotoData() {
             //Flickr Photo Source URL
             // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
             var {farm, id, secret, server} = json_photos.photos.photo[0];
-            console.log(farm);
+            // console.log(farm);
 
             // for (var i=0; i<json_photos.length; i++) {
                 const photoURL = (
