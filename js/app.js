@@ -35,6 +35,14 @@ const STATE = {
     cityTime: null,
 };
 
+//don't load until DOM is ready
+//for DOM related functions 
+$(function(){
+const inputElem = $('.js-searchLocation')[0];
+initPlaces(inputElem);
+handleSubmit();
+});
+
 //GET LOCATION 
 
 // Get information from Google API - lat, long, name 
@@ -144,12 +152,12 @@ function getPhotoData() {
             console.log(farm);
 
             // for (var i=0; i<json_photos.length; i++) {
-                const photoHTML = (
+                const photoURL = (
                     `<img src="https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg" 
                         alt="image from ${STATE.cityName}"></a>`
                 );
-                console.log(photoHTML);
-                $(".photos").append(photoHTML);
+                console.log(photoURL);
+                $(".photos").append(photoURL);
             // }
         }).catch(function(err){
             console.log(err);
@@ -164,14 +172,3 @@ function handleSubmit() {
     })
 }
 
-//don't load until DOM is ready
-//for DOM related functions 
-$(function(){
-const inputElem = $('.js-searchLocation')[0];
-initPlaces(inputElem);
-handleSubmit();
-getUserTime();
-// getLocationTime();
-// getCityData();
-// getForecastData();
-});
