@@ -95,31 +95,27 @@ function getForecastData(json_weather) {
     $.getJSON(ACCUWEATHER.forecast_url + STATE.cityKey, param)
         .then (function (forecast) {
             const forecastElm = $(".weather");
-            // console.log(forecast);
-            for (var i = 0; i<forecastItem.length; i+=1) {
+            console.log(forecast);
+                //this is variable   //how to change until condition false (prevent infinite loop)
+            for (var i = 0; i<Math.min (2, forecast.DailyForecasts.length); i++) {
+                        //math is library in javascript 
 
-                const forecastItem = forecast.DailyForecasts[i];
-                const forecastIcon = forecastItem.Day.Icon;
-                const forecastPhrase = forecastItem.Day.IconPhrase;
-                const forecastMax = forecastItem.Temperature.Maximum.Value;
-                const forecastMin = forecastItem.Temperature.Minimum.Value;
-                const forecastDay = forecastItem.EpochDate;
-                // var {Icon, IconPhrase} = forecast.DailyForecasts[0]; 
-                // console.log(forecast.DailyForecasts[0].Day.Icon);
-            }          
+                let forecastItem = forecast.DailyForecasts[i];
+                //access to the item in the array 
+                //& pull out properties of the array in weatherHTML
 
-            let weatherHTML = (
+                let weatherHTML = (
                 `<div class="weather-card">
-                    <img src="https://developer.accuweather.com/sites/default/files/${forecastIcon}-s.png" width="75" height="45" alt="icon for ${forecastPhrase}">
-                    <span class="weather-max> ${forecastMax} °F</span> <br>
-                    <span class="weather-min> ${forecastMin} °F</span> <br>
-                    <span class="weather-desc> ${forecastPhrase} </span> <br>  
-                    ${forecastDay}.toLocaleString();
-                </div>`
-        )
-        forecastElm
-            .append(weatherHTML);
-            // console.log(weatherHTML);
+                    <img src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.IconPhrase}">
+                    <span class="weather-max> ${forecastItem.Temperature.Maximum.Value} °F</span> <br>
+                    <span class="weather-min> ${forecastItem.Temperature.Minimum.Value} °F</span> <br>
+                    <span class="weather-desc> ${forecastItem.IconPhrase} </span> <br>  
+                    ${forecastItem.Epoch}.toLocaleString();
+                </div>`);
+
+            forecastElm
+                .append(weatherHTML);
+        }         
     });
 }
 
