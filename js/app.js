@@ -53,7 +53,8 @@ function initPlaces(inputElem) {
 
         // if there is no ID, we haven't gotten a real place
         // so we want to exit the function;
-        if (!STATE.googlePlace.id) return; 
+        if (!STATE.googlePlace.id) 
+            return; 
         //need to add user facing alert
 
         STATE.geoLat = STATE.googlePlace.geometry.location.lat();
