@@ -95,16 +95,18 @@ function getForecastData(json_weather) {
     $.getJSON(ACCUWEATHER.forecast_url + STATE.cityKey, param)
         .then (function (forecast) {
             const forecastElm = $(".weather");
+            // console.log(forecast);
+            for (var i = 0; i<forecastItem.length; i+=1) {
 
-            // var {Icon, IconPhrase} = forecast.DailyForecasts[0];
-            const forecastItem = forecast.DailyForecasts[0];
-            const forecastIcon = forecastItem.Day.Icon;
-            const forecastPhrase = forecastItem.Day.IconPhrase;
-            const forecastMax = forecastItem.Temperature.Maximum.Value;
-            const forecastMin = forecastItem.Temperature.Minimum.Value;
-            const epoch = forecastItem.EpochDate;
-
-            console.log(forecast);
+                const forecastItem = forecast.DailyForecasts[i];
+                const forecastIcon = forecastItem.Day.Icon;
+                const forecastPhrase = forecastItem.Day.IconPhrase;
+                const forecastMax = forecastItem.Temperature.Maximum.Value;
+                const forecastMin = forecastItem.Temperature.Minimum.Value;
+                const forecastDay = forecastItem.EpochDate;
+                // var {Icon, IconPhrase} = forecast.DailyForecasts[0]; 
+                // console.log(forecast.DailyForecasts[0].Day.Icon);
+            }          
 
             let weatherHTML = (
                 `<div class="weather-card">
@@ -112,14 +114,17 @@ function getForecastData(json_weather) {
                     <span class="weather-max> ${forecastMax} °F</span> <br>
                     <span class="weather-min> ${forecastMin} °F</span> <br>
                     <span class="weather-desc> ${forecastPhrase} </span> <br>  
-                    // ${epoch}.toLocaleString();
+                    ${forecastDay}.toLocaleString();
                 </div>`
         )
         forecastElm
             .append(weatherHTML);
-            console.log(weatherHTML);
+            // console.log(weatherHTML);
     });
 }
+
+// function renderForecast() {
+// }
 
 // getFormattedDate(forecastItem.EpochDate);
 
@@ -182,7 +187,7 @@ function getPhotoData() {
     }
     $.getJSON(FLICKR.url, param)
         .then(function(json_photos) {
-            console.log(json_photos.photos.photo[0]);
+            // console.log(json_photos.photos.photo[0]);
 
             //Flickr Photo Source URL
             // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
