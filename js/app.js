@@ -96,47 +96,43 @@ function getForecastData(json_weather) {
         .then (function (forecast) {
             const forecastElm = $(".weather");
             console.log(forecast);
-                //this is variable   //how to change until condition false (prevent infinite loop)
-            for (var i = 0; i<Math.min (2, forecast.DailyForecasts.length); i++) {
-                        //math is library in javascript 
+
+            for (var i = 0; i<forecast.DailyForecasts.length; i++) {
 
                 let forecastItem = forecast.DailyForecasts[i];
-                forecastItem.Day.Icon = forecastItem.Day.Icon <= 9 ? '0' + forecastItem.Day.Icon  : forecastItem.Day.Icon ;
+                forecastItem.Day.Icon = forecastItem.Day.Icon <= 9 ? '0' + forecastItem.Day.Icon : forecastItem.Day.Icon ;
                 //access to the item in the array 
                 //& pull out properties of the array in weatherHTML
 
                 let weatherHTML = (
                 `<div class="weather-card">
-                    <img src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.IconPhrase}">
-                    <span class="weather-max> ${forecastItem.Temperature.Maximum.Value} °F</span> <br>
-                    <span class="weather-min> ${forecastItem.Temperature.Minimum.Value} °F</span> <br>
-                    <span class="weather-desc> ${forecastItem.IconPhrase} </span> <br>  
-                    ${forecastItem.Epoch}.toLocaleString();
+                    <div class="card-content">
+                        <img src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.IconPhrase}">
+                        <span class="weather-max> High ${forecastItem.Temperature.Maximum.Value} °F</span> 
+                        <span class="weather-min> Low ${forecastItem.Temperature.Minimum.Value} °F</span> 
+                        <span class="weather-desc> ${forecastItem.IconPhrase} </span>  
+                        ${getFormattedDate(forecastItem.EpochDate)}
+                    </div>
                 </div>`);
-
             forecastElm
                 .append(weatherHTML);
         }         
     });
 }
 
-// function renderForecast() {
-// }
-
-// getFormattedDate(forecastItem.EpochDate);
-
-// function getFormatedDate() {
-    
-//     var today = new Date();
-//     var dd = today.getDate();
-//     var mm = today.getMonth() + 1;
-
-//     if(dd < 10) { dd = '0' + dd; }
-//     if(mm < 10) { mm = '0' + mm; }
-
-//     return dd+'/'+mm+'/' + today.getFullYear();
-    
-// }
+function getFormattedDate(dtVal) {
+    let weekday = new Array(7);
+        weekday[0] =  "Sunday";
+        weekday[1] = "Monday";
+        weekday[2] = "Tuesday";
+        weekday[3] = "Wednesday";
+        weekday[4] = "Thursday";
+        weekday[5] = "Friday";
+        weekday[6] = "Saturday";
+    let dt = new Date(dtVal * 1000);
+    let dtString = `${weekday[dt.getDay()]}, ${dt.getMonth()}/${dt.getDate()}/${dt.getFullYear()}`; 
+    return dtString;
+}
 
 // TIME 
 
