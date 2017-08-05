@@ -101,6 +101,7 @@ function getForecastData(json_weather) {
                         //math is library in javascript 
 
                 let forecastItem = forecast.DailyForecasts[i];
+                forecastItem.Day.Icon = forecastItem.Day.Icon <= 9 ? '0' + forecastItem.Day.Icon  : forecastItem.Day.Icon ;
                 //access to the item in the array 
                 //& pull out properties of the array in weatherHTML
 
