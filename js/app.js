@@ -101,7 +101,7 @@ function getForecastData(json_weather) {
             for (var i = 0; i<forecast.DailyForecasts.length; i++) {
 
                 let forecastItem = forecast.DailyForecasts[i];
-                console.log(forecastItem);
+                // console.log(forecastItem);
                 forecastItem.Day.Icon = forecastItem.Day.Icon <= 9 ? '0' + forecastItem.Day.Icon : forecastItem.Day.Icon ;
                 //access to the item in the array 
                 //& pull out properties of the array in weatherHTML
@@ -175,12 +175,13 @@ function getPhotoData() {
     let param = {
         lat: `${STATE.geoLat}`,
         lon: `${STATE.geoLng}`,
+        tags: "nature",
         api_key: FLICKR.key,
         format: "json",
         nojsoncallback: 1,
         privacy_filter: 1,
         safe_search: 1, 
-        per_page: 10,
+        per_page: 6,
     }
     $.getJSON(FLICKR.url, param)
         .then(function(json_photos) {
@@ -191,15 +192,18 @@ function getPhotoData() {
             var {farm, id, secret, server} = json_photos.photos.photo[0];
             // console.log(farm);
 
-            for (var i=0; i<json_photos.length; i++) {
+            // for (var i=0; i<json_photos.length; i++) {
                 
-                const photoURL = (
+                let photoURL = (
                     `<img src="https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg" 
                         alt="image from ${STATE.cityName}"></a>`
                 );
-                console.log(photoURL);
-                $(".photos").append(photoURL);
-            }
+                // console.log(photoURL);
+                $(".photos")
+                .empty()
+                .append(photoURL);
+            // }
+
         }).catch(function(err){
             console.log(err);
         })
