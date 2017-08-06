@@ -188,7 +188,7 @@ function getPhotoData() {
     $.getJSON(FLICKR.url, param)
         .then(function(json_photos) {
             const photosArr = json_photos.photos.photo;
-            let photoURL = "";
+            let photoHTML = "";
             //Flickr Photo Source URL
             // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
             // console.log(farm);
@@ -196,14 +196,15 @@ function getPhotoData() {
             for (var i=0; i<photosArr.length; i++) {
                 var {farm, id, secret, server} = photosArr[i];
 
-                photoURL += (
-                    `<img src="https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg" 
-                        alt="image from ${STATE.cityName}">`
+                photoHTML += (
+                    `<div class="photo-card">
+                            <img src="https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg" alt="image from ${STATE.cityName}">
+                    </div>`
                 );
             }
                 $(".photos")
                     .empty()
-                    .append(photoURL);
+                    .append(photoHTML);
 
         }).catch(function(err){
             console.log(err);
