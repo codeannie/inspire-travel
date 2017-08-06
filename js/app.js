@@ -175,7 +175,9 @@ function getPhotoData() {
     let param = {
         lat: `${STATE.geoLat}`,
         lon: `${STATE.geoLng}`,
-        tags: "nature",
+        // tags: "nature, city, outdoor",  
+        // is_commons: "true",
+        is_getty: "true",
         api_key: FLICKR.key,
         format: "json",
         nojsoncallback: 1,
@@ -185,24 +187,23 @@ function getPhotoData() {
     }
     $.getJSON(FLICKR.url, param)
         .then(function(json_photos) {
-            // console.log(json_photos.photos.photo[0]);
-
+            const photosArr = json_photos.photos.photo;
+            let photoURL = "";
             //Flickr Photo Source URL
             // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-            var {farm, id, secret, server} = json_photos.photos.photo[0];
             // console.log(farm);
 
-            // for (var i=0; i<json_photos.length; i++) {
-                
-                let photoURL = (
+            for (var i=0; i<photosArr.length; i++) {
+                var {farm, id, secret, server} = photosArr[i];
+
+                photoURL += (
                     `<img src="https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg" 
-                        alt="image from ${STATE.cityName}"></a>`
+                        alt="image from ${STATE.cityName}">`
                 );
-                // console.log(photoURL);
+            }
                 $(".photos")
-                .empty()
-                .append(photoURL);
-            // }
+                    .empty()
+                    .append(photoURL);
 
         }).catch(function(err){
             console.log(err);
