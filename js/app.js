@@ -95,11 +95,12 @@ function getForecastData(json_weather) {
     $.getJSON(ACCUWEATHER.forecast_url + STATE.cityKey, param)
         .then (function (forecast) {
             const forecastElm = $(".weather");
-            console.log(forecast);
+            // console.log(forecast);
 
             for (var i = 0; i<forecast.DailyForecasts.length; i++) {
 
                 let forecastItem = forecast.DailyForecasts[i];
+                console.log(forecastItem);
                 forecastItem.Day.Icon = forecastItem.Day.Icon <= 9 ? '0' + forecastItem.Day.Icon : forecastItem.Day.Icon ;
                 //access to the item in the array 
                 //& pull out properties of the array in weatherHTML
@@ -107,15 +108,16 @@ function getForecastData(json_weather) {
                 let weatherHTML = (
                 `<div class="weather-card">
                     <div class="card-content">
-                        <img src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.IconPhrase}">
-                        <span class="weather-max> High ${forecastItem.Temperature.Maximum.Value} °F</span> 
-                        <span class="weather-min> Low ${forecastItem.Temperature.Minimum.Value} °F</span> 
-                        <span class="weather-desc> ${forecastItem.IconPhrase} </span>  
+                        <img src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.Day.IconPhrase}">
+                        <span class="weather-max"> High ${forecastItem.Temperature.Maximum.Value} °F</span> 
+                        <span class="weather-min"> Low ${forecastItem.Temperature.Minimum.Value} °F</span> 
+                        <span class="weather-desc"> ${forecastItem.Day.IconPhrase} </span>  
                         ${getFormattedDate(forecastItem.EpochDate)}
                     </div>
                 </div>`);
             forecastElm
                 .append(weatherHTML);
+                console.log(weatherHTML);
         }         
     });
 }
@@ -187,14 +189,15 @@ function getPhotoData() {
             var {farm, id, secret, server} = json_photos.photos.photo[0];
             // console.log(farm);
 
-            // for (var i=0; i<json_photos.length; i++) {
+            for (var i=0; i<json_photos.length; i++) {
+                
                 const photoURL = (
                     `<img src="https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg" 
                         alt="image from ${STATE.cityName}"></a>`
                 );
-                // console.log(photoURL);
+                console.log(photoURL);
                 $(".photos").append(photoURL);
-            // }
+            }
         }).catch(function(err){
             console.log(err);
         })
