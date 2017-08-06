@@ -111,7 +111,7 @@ function getForecastData(json_weather) {
                         <p class="weather-max"> High ${forecastItem.Temperature.Maximum.Value} °F</p>
                         <p class="weather-min"> Low ${forecastItem.Temperature.Minimum.Value} °F</p> 
                         <p class="weather-desc"> ${forecastItem.Day.IconPhrase} </p>  
-                        <p>${getFormattedDate(forecastItem.EpochDate)}</p>
+                        ${getFormattedDate(forecastItem.EpochDate)}
                     </div>
                 </div>`);
         }         
