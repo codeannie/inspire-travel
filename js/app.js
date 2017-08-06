@@ -172,6 +172,7 @@ function getPhotoData() {
         lon: `${STATE.geoLng}`,
         // tags: "nature, city, outdoor",  
         // is_commons: "true",
+        radius: 32,
         is_getty: "true",
         api_key: FLICKR.key,
         format: "json",
