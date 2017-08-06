@@ -1,12 +1,15 @@
 body {
     /* background-color:#004c8c; */
-    /* box-sizing: border-box; */
     font-family: 'Roboto', sans-serif;
 }
 
 h1, h2 {
     font-family: 'Poppins', sans-serif; 
 }
+
+/* .weather-content {
+     display: inline-block; 
+} */
 
 /* .landing-page {
     background-image: url("https://static.pexels.com/photos/386009/pexels-photo-386009.jpeg");
