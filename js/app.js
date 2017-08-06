@@ -66,7 +66,6 @@ function initPlaces(inputElem) {
         displayLocationName();
         getPhotoData();
     })
-    // console.log(STATE);
 }
 
 //Display Location Name 
@@ -95,13 +94,12 @@ function getForecastData(json_weather) {
     $.getJSON(ACCUWEATHER.forecast_url + STATE.cityKey, param)
         .then (function (forecast) {
             const forecastElm = $(".weather");
-            // console.log(forecast);
+
             let weatherHTML = "";
 
             for (var i = 0; i<forecast.DailyForecasts.length; i++) {
 
                 let forecastItem = forecast.DailyForecasts[i];
-                // console.log(forecastItem);
                 forecastItem.Day.Icon = forecastItem.Day.Icon <= 9 ? '0' + forecastItem.Day.Icon : forecastItem.Day.Icon ;
                 //access to the item in the array 
                 //& pull out properties of the array in weatherHTML
@@ -116,7 +114,6 @@ function getForecastData(json_weather) {
                         ${getFormattedDate(forecastItem.EpochDate)}
                     </div>
                 </div>`);
-                // console.log(weatherHTML);
         }         
             forecastElm
                 .empty()
@@ -143,7 +140,6 @@ function getFormattedDate(dtVal) {
 // GET USER TIME -- not sure if this is necessary 
 function getUserTime () {
     var date = moment().format("MMMM Do YY, h:mm:ss a");
-    // console.log(date);
 }
 
 // GET SUBMITTED LOCATION TIME
@@ -160,12 +156,11 @@ function getLocationTime () {
             var dstOffset = json_time.dstOffset
             var rawOffset = json_time.rawOffset
             var timeZone = json_time.timeZoneId
-            // console.log(json_time);
-            STATE.cityTime = new Date((param.timestamp + dstOffset + rawOffset) * 1000);
-            // console.log(STATE.cityTime);
 
-            //how to format this output? 
-            //how to show time refreshed every minute?
+            STATE.cityTime = new Date((param.timestamp + dstOffset + rawOffset) * 1000);
+
+            //Extra -  format input to remove GMT
+            //Extra - show time refreshed every minute
             $("#location-time").text(STATE.cityTime); 
         })
 }
