@@ -93,7 +93,7 @@ function getForecastData(json_weather) {
     }
     $.getJSON(ACCUWEATHER.forecast_url + STATE.cityKey, param)
         .then (function (forecast) {
-            const forecastElm = $(".weather");
+            const forecastElm = $(".weather-container");
 
             let weatherHTML = "";
 
