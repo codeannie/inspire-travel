@@ -189,9 +189,6 @@ function getPhotoData() {
         .then(function(json_photos) {
             const photosArr = json_photos.photos.photo;
             let photoHTML = "";
-            //Flickr Photo Source URL
-            // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-            // console.log(farm);
 
             for (var i=0; i<photosArr.length; i++) {
                 var {farm, id, secret, server} = photosArr[i];
