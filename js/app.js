@@ -96,6 +96,7 @@ function getForecastData(json_weather) {
         .then (function (forecast) {
             const forecastElm = $(".weather");
             // console.log(forecast);
+            let weatherHTML = "";
 
             for (var i = 0; i<forecast.DailyForecasts.length; i++) {
 
@@ -105,7 +106,7 @@ function getForecastData(json_weather) {
                 //access to the item in the array 
                 //& pull out properties of the array in weatherHTML
 
-                let weatherHTML = (
+                weatherHTML += (
                 `<div class="weather-card">
                     <div class="card-content">
                         <img src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.Day.IconPhrase}">
@@ -115,10 +116,11 @@ function getForecastData(json_weather) {
                         ${getFormattedDate(forecastItem.EpochDate)}
                     </div>
                 </div>`);
-            forecastElm
-                .append(weatherHTML);
-                console.log(weatherHTML);
+                // console.log(weatherHTML);
         }         
+            forecastElm
+                .empty()
+                .append(weatherHTML);
     });
 }
 
