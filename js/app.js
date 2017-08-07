@@ -108,9 +108,9 @@ function getForecastData(json_weather) {
                 `<div class="weather-card">
                     <div class="card-content">
                         <img src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.Day.IconPhrase}">
-                        <p class="weather-max"> High ${forecastItem.Temperature.Maximum.Value} °F</p>
-                        <p class="weather-min"> Low ${forecastItem.Temperature.Minimum.Value} °F</p> 
-                        <p class="weather-desc"> ${forecastItem.Day.IconPhrase} </p>  
+                        <p class="forecast-text"> High ${forecastItem.Temperature.Maximum.Value} °F</p>
+                        <p class="forecast-text"> Low ${forecastItem.Temperature.Minimum.Value} °F</p> 
+                        <p class="forecast-text"> ${forecastItem.Day.IconPhrase} </p>  
                         ${getFormattedDate(forecastItem.EpochDate)}
                     </div>
                 </div>`);
