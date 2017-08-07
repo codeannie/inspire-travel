@@ -2,7 +2,6 @@ body {
     background-color:#004c8c; 
     font-family: 'Roboto', sans-serif;
     color: #ffffff; 
-
 }
 
 h1, h2 {
@@ -21,6 +20,7 @@ h1, h2 {
 
 #search-form {
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 input {
@@ -40,7 +40,7 @@ input[type=text]:focus {
 
 .js-searchlocation {
     padding: 12px 20px;
-    background-image: url('<i class="material-icons">search</i>');
+    /* background-image: url(<i class="material-icons">search</i>);  */
 }
 
 button {
@@ -51,7 +51,7 @@ button {
 }
 
 .weather-card {
-    margin: 0 auto;
+    /* margin: 0 auto; */
     float: left; 
     padding: 5px;
     color: #000000;  
@@ -60,9 +60,9 @@ button {
     border-radius: 5px;
 }  
 
-.forecast-text {
+/* .forecast-text {
     text-align: center;
-}
+} */
 
 /* .landing-page {
     background-image: url("https://static.pexels.com/photos/386009/pexels-photo-386009.jpeg");
