@@ -8,6 +8,11 @@ h1, h2 {
     font-family: 'Poppins', sans-serif; 
 }
 
+.landing-page {
+    width: 600px;
+    margin: 0 auto;
+}
+
 .explain-box {
     /* display: inline-block;  */
     width: 450px;
@@ -40,6 +45,10 @@ input[type=text]:focus {
     border: 3px solid #e0e0e0;
 }
 
+::placeholder {
+    color: #ffffff;
+}
+
 .js-searchlocation {
     padding: 12px 20px;
     /* background-image: url(<i class="material-icons">search</i>);  */
@@ -54,7 +63,8 @@ button {
 
 .weather-card {
     /* margin: 0 auto; */
-    float: left; 
+    /* float: left;  */
+    display: inline-block;
     padding: 5px;
     color: #000000;  
     background-color: #e0e0e0;
