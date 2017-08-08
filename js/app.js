@@ -168,7 +168,7 @@ function getPhotoData() {
     let param = {
         lat: `${STATE.geoLat}`,
         lon: `${STATE.geoLng}`,
-        tags: "nature, city, outdoor",  
+        tags: "nature, city, outdoor, fun, explore",  
         // is_commons: "true",
         radius: 32,
         is_getty: "true",

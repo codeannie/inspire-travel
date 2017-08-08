@@ -6,10 +6,11 @@ body {
 
 h1, h2 {
     font-family: 'Poppins', sans-serif; 
+    text-align: center;
 }
 
 .landing-page {
-    /* display: inline-block; */
+    /* display: inline-block;  */
     width: 1000px;
     margin: 0 auto;
     /* outline helps with laying out stuff */
@@ -18,9 +19,11 @@ h1, h2 {
 
 .explain-box {
     /* display: inline-block;  */
-    width: 600px;
+    width: 500px;
+    margin: 0 auto;
     padding-left: 5px;
     padding-right: 5px;
+    text-align: center;
     color: #000000;  
     background-color: #e0e0e0;
     border: 1px solid #aeaeae; 
@@ -41,7 +44,7 @@ input {
     background-color: #004c8c;
     border: none;
     border-bottom: 2px solid #ffffff;
-    /* border-radius: 5px;     */
+    /* border-radius: 5px; */
 }
 
 input[type=text]:focus {
@@ -64,8 +67,13 @@ button {
     border-radius: 5px; 
 }
 
+.weather-container {
+    margin: 0 auto;
+}
+
 .weather-card {
     display: inline-block;
+    width: 150px;
     padding: 5px;
     color: #000000;  
     background-color: #e0e0e0;
