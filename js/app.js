@@ -190,12 +190,15 @@ function getPhotoData() {
                 var {farm, id, secret, server} = photosArr[i];
 
                 photoHTML += (
-                    `<div class="photo-card">
+                    `
+                    <div class="col-4">
+                        <div class="photo-card">
                             <img src="https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg" alt="image from ${STATE.cityName}">
+                        </div>
                     </div>`
                 );
             }
-                $(".photos")
+                $("#gallery")
                     .empty()
                     .append(photoHTML);
 
