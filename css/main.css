@@ -7,11 +7,11 @@ body {
 h1, h2, h3 {
     font-family: 'Poppins', sans-serif; 
     text-align: center;
+    background-color: #002f6c;
 }
 
 .landing-page {
-    /* display: inline-block;  */
-    width: 1000px;
+    /* width: 1000px; */
     margin: 0 auto;
     /* outline helps with laying out stuff */
     outline: 1px solid red;
@@ -19,13 +19,13 @@ h1, h2, h3 {
 
 .explain-box {
     /* display: inline-block;  */
-    width: 500px;
+     width: 500px; 
     margin: 0 auto;
     padding-left: 5px;
     padding-right: 5px;
     text-align: center;
     color: #000000;  
-    background-color: #e0e0e0;
+     background-color: #e0e0e0; 
     border: 1px solid #aeaeae; 
     border-radius: 5px;
 }
@@ -61,18 +61,23 @@ input[type=text]:focus {
 }
 
 button {
+    margin-left: 10px;
     height: 30px; 
     font-size: 14px;
     background-color: #ffffff;  
     border-radius: 5px; 
 }
 
-.weather-container {
-    margin: 0 auto;
+.weather-container, #search-form {
+    /* margin-left: 20%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .weather-card {
     display: inline-block;
+    /* margin: 0 auto; */
     width: 150px;
     padding: 5px;
     color: #000000;  
@@ -88,6 +93,12 @@ button {
 
 .forecast-text {
     text-align: center;
+}
+
+.photo-card {
+    display: inline-block;
+    width: 250px;
+    height: auto;
 }
 
 footer {
