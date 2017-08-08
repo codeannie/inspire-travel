@@ -105,12 +105,14 @@ function getForecastData(json_weather) {
                 //& pull out properties of the array in weatherHTML
 
                 weatherHTML += (
-                `<div class="weather-card">
-                    <img class="forecast-icon" src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.Day.IconPhrase}">
-                    <p class="forecast-text"> High ${forecastItem.Temperature.Maximum.Value} °F</p>
-                    <p class="forecast-text"> Low ${forecastItem.Temperature.Minimum.Value} °F</p> 
-                    <p class="forecast-text"> ${forecastItem.Day.IconPhrase} </p>  
-                    <p class="forecast-text">${getFormattedDate(forecastItem.EpochDate)} </p>
+                `<div class="col-3">
+                    <div class="weather-card">
+                        <img class="forecast-icon" src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.Day.IconPhrase}">
+                        <p class="forecast-text"> High ${forecastItem.Temperature.Maximum.Value} °F</p>
+                        <p class="forecast-text"> Low ${forecastItem.Temperature.Minimum.Value} °F</p> 
+                        <p class="forecast-text"> ${forecastItem.Day.IconPhrase} </p>  
+                        <p class="forecast-text">${getFormattedDate(forecastItem.EpochDate)} </p>
+                    </div>
                 </div>`);
         }         
             forecastElm
@@ -168,7 +170,7 @@ function getPhotoData() {
     let param = {
         lat: `${STATE.geoLat}`,
         lon: `${STATE.geoLng}`,
-        tags: "nature, city, outdoor, fun, explore, scenary",  
+        tags: "nature, city, outdoor, fun, explore",  
         // is_commons: "true",
         radius: 32,
         is_getty: "true",
