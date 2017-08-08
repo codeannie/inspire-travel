@@ -38,7 +38,9 @@ h1, h2, h3 {
 }
 
 input {
-    width: 600px;
+    display: block;
+    margin: 0 auto;
+    width: 500px;
     height: 30px; 
     font-size: 14px; 
     color: #ffffff;
@@ -62,6 +64,8 @@ input[type=text]:focus {
 }
 
 button {
+    display: block;
+    margin: 0 auto;
     margin-left: 10px;
     height: 30px; 
     font-size: 14px;
@@ -69,11 +73,11 @@ button {
     border-radius: 5px; 
 }
 
- .weather-container, #search-form {
+ /* .weather-container, #search-form {
     display: flex;
     justify-content: center;
     align-items: center;
-} 
+}  */
 
 .weather-card {
     display: inline-block;
