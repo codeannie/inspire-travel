@@ -63,16 +63,6 @@ input[type=text]:focus {
     background-image: url(assets/ic_search_black_24dp_2x.png);  
 }
 
-button {
-    display: block;
-    margin: 0 auto;
-    margin-left: 10px;
-    height: 30px; 
-    font-size: 14px;
-    background-color: #ffffff;  
-    border-radius: 5px; 
-}
-
  /* .weather-container, #search-form {
     display: flex;
     justify-content: center;
