@@ -106,11 +106,11 @@ function getForecastData(json_weather) {
 
                 weatherHTML += (
                 `<div class="weather-card">
-                    <img src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.Day.IconPhrase}">
+                    <img class="forecast-icon" src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.Day.IconPhrase}">
                     <p class="forecast-text"> High ${forecastItem.Temperature.Maximum.Value} °F</p>
                     <p class="forecast-text"> Low ${forecastItem.Temperature.Minimum.Value} °F</p> 
                     <p class="forecast-text"> ${forecastItem.Day.IconPhrase} </p>  
-                    ${getFormattedDate(forecastItem.EpochDate)}
+                    <p class="forecast-text">${getFormattedDate(forecastItem.EpochDate)} </p>
                 </div>`);
         }         
             forecastElm
