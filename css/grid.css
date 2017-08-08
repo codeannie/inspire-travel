@@ -21,17 +21,16 @@
     margin: 0 auto;
 } 
 
-/* Clearfix - can I add clear to this one or does it need to be separate? */
-.row::before, .row::after {
-    content: "";
-    display: table;
-    clear: both;
+/* Clearfix */
+.row::before,
+.row::after {
+  display: table;
+  content: '';
 }
 
-/* What is the difference? */
-/*  [class*="col-"] {
-    float: left; 
-} */
+.row::after {
+  clear: both;
+}
 
 .col-3, .col-4, .col-6, .col-12 {
     float: left;

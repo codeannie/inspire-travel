@@ -13,38 +13,41 @@
 
 <body>
     <main>
-        <!-- landing page -->
-        <div class="landing-page">
-            <h1>Inspire Travel <i class="material-icons">flight</i> </h1>
-                <div class="explain-box">
-                    <p class="explain-text">Thinking about going somewhere?</p>
-                    <p class="explain-text">Type a location to get inspired!</p>
-                </div>
+        <div class="row">
+            <!-- landing page -->
+            <div class="landing-page">
+                <h1>Inspire Travel <i class="material-icons">flight</i> </h1>
+                    <div class="explain-box">
+                        <p class="explain-text">Thinking about going somewhere?</p>
+                        <p class="explain-text">Type a location to get inspired!</p>
+                    </div>
 
-                <form id="search-form">
-                    <input type="text" class="js-searchLocation" aria-label="search for a location" placeholder="Enter a location">
-                    <button type="submit">Inspire Me</button> 
-                </form>
+                    <form id="search-form">
+                        <input type="text" class="js-searchLocation" aria-label="search for a location" placeholder="Enter a location">
+                        <button type="submit">Inspire Me</button> 
+                    </form>
+                    
+                <h2 class="location-name">Tokyo, Japan</h2>
                 
-            <h2 class="location-name">Tokyo, Japan</h2>
-            
-                <!-- <div class="weather"><span class="location-name"></span>  -->
-                <h3> Weather Forecast <i class="material-icons">cloud_queue</i></h3>
-                    <div class="weather-container"></div>
-                
-                <h3 class="time-box"> Current Time <i class="material-icons">schedule</i> <span id="location-time"></h3>
+                    <!-- <div class="weather"><span class="location-name"></span>  -->
+                    
+                    <h3> Weather Forecast <i class="material-icons">cloud_queue</i></h3>
+                        <div class="weather-container"></div>
+                    
+                    <h3 class="time-box"> Current Time <i class="material-icons">schedule</i> <span id="location-time"></h3>
 
-                <h3> Photos from <span class="location-name"></span> <i class="material-icons">photo_camera</i></h3>
-                   <div class="photos" id="gallery"> </div>
+                    <h3> Photos from <span class="location-name"></span> <i class="material-icons">photo_camera</i></h3>
+                    <div class="photos" id="gallery"> </div>
+            </div>
+
+            <!-- display page -->
+            <div class="results-page" hidden>
+                <h2 >Display User Location Name</h2>
+                    <section class="weather">Display location weather</section>
+                    <section class="time">Display time</section>
+                    <section class="photos">Display location images</section>
+            </div>  
         </div>
-
-        <!-- display page -->
-          <div class="results-page" hidden>
-            <h2 >Display User Location Name</h2>
-                <section class="weather">Display location weather</section>
-                <section class="time">Display time</section>
-                <section class="photos">Display location images</section>
-        </div>  
     </main> 
 
     <footer>
