@@ -97,7 +97,7 @@ function getForecastData(json_weather) {
 
             let weatherHTML = "";
 
-            for (var i = 0; i<forecast.DailyForecasts.length; i++) {
+            for (var i = 0; i<forecast.DailyForecasts.length-1; i++) {
 
                 let forecastItem = forecast.DailyForecasts[i];
                 forecastItem.Day.Icon = forecastItem.Day.Icon <= 9 ? '0' + forecastItem.Day.Icon : forecastItem.Day.Icon ;
@@ -105,7 +105,7 @@ function getForecastData(json_weather) {
                 //& pull out properties of the array in weatherHTML
 
                 weatherHTML += (
-                `<div class="col-2">
+                `<div class="col-3">
                     <div class="weather-card">
                         <img class="forecast-icon" src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.Day.IconPhrase}">
                         <p class="forecast-text"> High ${forecastItem.Temperature.Maximum.Value} °F</p>
