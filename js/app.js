@@ -179,7 +179,7 @@ function getPhotoData() {
         nojsoncallback: 1,
         privacy_filter: 1,
         safe_search: 1, 
-        per_page: 8,
+        per_page: 9,
     }
     $.getJSON(FLICKR.url, param)
         .then(function(json_photos) {
