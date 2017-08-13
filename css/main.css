@@ -20,6 +20,8 @@ h1, h2, h3 {
 }
 
 .explain-box {
+    width: 500px;
+    margin: auto;
     text-align: center;
     color: #000000;  
     background-color: #e0e0e0; 
