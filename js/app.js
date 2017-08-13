@@ -67,6 +67,8 @@ function initPlaces(inputElem) {
         getLocationTime();
         displayLocationName();
         getPhotoData();
+        
+        $(".text-wrap").prop("hidden", false);
     })
 }
 
@@ -207,7 +209,7 @@ function getPhotoData() {
         }).catch(function(err){
             console.log(err);
         })
-}
+} 
 
 //prevents submit to happen
 function handleSubmit() {
