@@ -1,7 +1,7 @@
 body {
     background-color:#004c8c; 
     font-family: 'Roboto', sans-serif;
-    color: #ffffff; 
+    color: #000000; 
 }
 
 h1, h2, h3 {
@@ -10,8 +10,15 @@ h1, h2, h3 {
     vertical-align: center;
     /* padding: 5px; */
     /* border-bottom: 2px solid #ffffff; */
-    /* background-color: rgba(0, 0, 0, 0.7); */
+
     /* opacity: 0.5; */
+}
+
+.title-wrap{
+    width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .landing-page {
@@ -44,8 +51,8 @@ input {
     height: 30px; 
     font-size: 14px; 
     color: #ffffff;
-    background-color: #004c8c;
-    /* background-color: rgba(234, 224, 224, 0.70); */
+    /* background-color: #004c8c; */
+    background-color: rgba(234, 224, 224, 0.70);
     border: none;
     border-bottom: 2px solid #ffffff;
     /* border-radius: 5px; */
@@ -121,9 +128,9 @@ footer {
     font-size: 12px;
 }
 
- /* body {
+ body {
     background-image: url("https://static.pexels.com/photos/386009/pexels-photo-386009.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
-}  */
+} 
 
