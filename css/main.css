@@ -87,26 +87,26 @@ input[type=text]:focus {
 }
 
 .thumbnail {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  margin-bottom: 5px;
-  overflow: hidden;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 5px;
+    overflow: hidden;
 }
 
 .thumbnail img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  height: 100%;
-  width: auto;
-  -webkit-transform: translate(-50%,-50%);
-      -ms-transform: translate(-50%,-50%);
-          transform: translate(-50%,-50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
 }
 .thumbnail img.portrait {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 
 footer {
