@@ -7,8 +7,10 @@ body {
 h1, h2, h3 {
     font-family: 'Poppins', sans-serif; 
     text-align: center;
+    vertical-align: center;
+    /* padding: 5px; */
     /* border-bottom: 2px solid #ffffff; */
-    /* background-color: #002f6c; */
+    /* background-color: #000000; */
 }
 
 .landing-page {
@@ -18,10 +20,6 @@ h1, h2, h3 {
 }
 
 .explain-box {
-    /* width: 500px;  
-    margin: 0 auto; */
-    /* padding-left: 5px;
-    padding-right: 5px; */
     text-align: center;
     color: #000000;  
     background-color: #e0e0e0; 
