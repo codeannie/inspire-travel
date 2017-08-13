@@ -18,14 +18,6 @@ const FLICKR = {
     secret: "b37b20e78b51a47b",
 };
 
-const HTML = {
-    landingPage: ".landing-page",
-    searchForm: "#search-form",
-    weather: ".weather",
-    time: ".time",
-    photos: ".photos"
-};
-
 const STATE = {
     googlePlace : null,
     geoLat: null,
@@ -40,7 +32,6 @@ const STATE = {
 $(function(){
 const inputElem = $('.js-searchLocation')[0];
 initPlaces(inputElem);
-// console.log(inputElem);
 handleSubmit();
 });
 
@@ -49,11 +40,10 @@ handleSubmit();
 //     initPlaces(inputElem)
 // }
 
-function initShow() {
-    let initPlace = $('.js-searchLocation').val("Honolulu, HI, United States");
-    // initPlaces(initPlace);
-    // alert ("SHOW ME!");
-}
+// function initShow() {
+//     let initPlace = $('.js-searchLocation').val("Honolulu, HI, United States");
+//     initPlaces(initPlace);
+// }
 
 //GET LOCATION 
 
@@ -72,7 +62,7 @@ function initPlaces(inputElem) {
         STATE.geoLat = STATE.googlePlace.geometry.location.lat();
         STATE.geoLng = STATE.googlePlace.geometry.location.lng();
         STATE.cityName = STATE.googlePlace.formatted_address;
-        console.log(STATE);
+
         getCityData();
         getLocationTime();
         displayLocationName();
