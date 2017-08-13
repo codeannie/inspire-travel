@@ -40,8 +40,20 @@ const STATE = {
 $(function(){
 const inputElem = $('.js-searchLocation')[0];
 initPlaces(inputElem);
+// console.log(inputElem);
 handleSubmit();
 });
+
+//LANDING PAGE -- INITIAL LOAD
+// if(firstTimeUser) {
+//     initPlaces(inputElem)
+// }
+
+function initShow() {
+    let initPlace = $('.js-searchLocation').val("Honolulu, HI, United States");
+    // initPlaces(initPlace);
+    // alert ("SHOW ME!");
+}
 
 //GET LOCATION 
 
@@ -60,7 +72,7 @@ function initPlaces(inputElem) {
         STATE.geoLat = STATE.googlePlace.geometry.location.lat();
         STATE.geoLng = STATE.googlePlace.geometry.location.lng();
         STATE.cityName = STATE.googlePlace.formatted_address;
-
+        console.log(STATE);
         getCityData();
         getLocationTime();
         displayLocationName();
