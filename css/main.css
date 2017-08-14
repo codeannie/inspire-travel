@@ -59,17 +59,12 @@ input {
 }
 
 input[type=text]:focus {
-    border: 3px solid #e0e0e0;
+    border: 3px solid #004c8c;
 }
 
 ::placeholder {
     text-align: center;
     color: #000000;
-}
-
-.js-searchlocation {
-    padding: 12px 20px;
-    background-image: url(assets/ic_search_black_24dp_2x.png);  
 }
 
  /* .weather-container, #search-form {
