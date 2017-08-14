@@ -163,7 +163,7 @@ function getLocationTime () {
 
             //Extra -  format input to remove GMT
             //Extra - show time refreshed every minute
-            $("#location-time").text(STATE.cityTime); 
+            $(".location-time").text(STATE.cityTime); 
         })
 }
     
