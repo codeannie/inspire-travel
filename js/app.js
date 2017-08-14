@@ -104,9 +104,7 @@ function getForecastData(json_weather) {
     $.getJSON(ACCUWEATHER.forecast_url + STATE.cityKey, param)
         .then (function (forecast) {
             const forecastElm = $(".weather-container");
-
             let weatherHTML = "";
-
             for (var i = 0; i<forecast.DailyForecasts.length-1; i++) {
 
                 let forecastItem = forecast.DailyForecasts[i];
@@ -117,11 +115,11 @@ function getForecastData(json_weather) {
                 weatherHTML += (
                 `<div class="col-3">
                     <div class="weather-card">
+                        <p class="forecast-day">${getFormattedDate(forecastItem.EpochDate)} </p>
                         <img class="forecast-icon" src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.Day.IconPhrase}">
                         <p class="forecast-text"> High ${forecastItem.Temperature.Maximum.Value} °F</p>
                         <p class="forecast-text"> Low ${forecastItem.Temperature.Minimum.Value} °F</p> 
                         <p class="forecast-text"> ${forecastItem.Day.IconPhrase} </p>  
-                        <p class="forecast-text">${getFormattedDate(forecastItem.EpochDate)} </p>
                     </div>
                 </div>`);
         }         
@@ -147,12 +145,6 @@ function getFormattedDate(dtVal) {
 
 // TIME 
 
-// GET USER TIME -- not sure if this is necessary 
-function getUserTime () {
-    var date = moment().format("MMMM Do YY, h:mm:ss a");
-}
-
-// GET SUBMITTED LOCATION TIME
 function getLocationTime () {
     var targetDate = new Date() // Current date/time of user computer
     let param = {
