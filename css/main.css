@@ -14,6 +14,10 @@ h1, h2, h3 {
     vertical-align: center;
 }
 
+h1 {
+    font-size: 36px;
+}
+
 .text-wrap {
     margin: 0 auto;
     padding: 5px;
@@ -64,14 +68,13 @@ input[type=text]:focus {
 
 ::placeholder {
     text-align: center;
+    font-style: italic;
     color: #000000;
 }
 
- /* .weather-container, #search-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}  */
+.location-time {
+    margin: 0 auto;
+}
 
 .weather-card {
     width: 100%;
@@ -130,3 +133,8 @@ footer {
     font-size: 12px;
 }
 
+ /* .weather-container, #search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}  */
