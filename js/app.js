@@ -25,6 +25,7 @@ const STATE = {
     cityKey: null,
     cityName: null,
     cityTime: null,
+    route: "landing"
 };
 
 //don't load until DOM is ready
@@ -63,13 +64,18 @@ function initPlaces(inputElem) {
         STATE.geoLng = STATE.googlePlace.geometry.location.lng();
         STATE.cityName = STATE.googlePlace.formatted_address;
 
-        getCityData();
-        getLocationTime();
-        displayLocationName();
-        getPhotoData();
-        
-        $(".text-wrap").prop("hidden", false);
+        renderPlace(STATE);
     })
+}
+
+function renderPlace(state) {
+    getCityData();
+    getLocationTime();
+    displayLocationName();
+    getPhotoData();
+    
+    $(".results").prop("hidden", false);
+    $(".landing").prop("hidden", true); 
 }
 
 //Display Location Name 
