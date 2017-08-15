@@ -48,8 +48,7 @@ Landing Page:
 ![screenshot of landing page](https://github.com/codeannie/inspire-travel/blob/master/assets/inspiretravel_landing.png)
 
 Weather Forecast Section:
-![screenshot of weather foreacast section]
-(https://github.com/codeannie/inspire-travel/blob/master/assets/inspiretravel_forecast.png)
+![screenshot of weather foreacast section](https://github.com/codeannie/inspire-travel/blob/master/assets/inspiretravel_forecast.png)
 
 Photos Section: 
 ![screenshot of photos section](https://github.com/codeannie/inspire-travel/blob/master/assets/inspiretravel_photos.png)
