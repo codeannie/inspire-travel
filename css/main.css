@@ -1,8 +1,6 @@
 body {
     background: url("https://static.pexels.com/photos/386009/pexels-photo-386009.jpeg")no-repeat center center fixed;
     background-size: cover;
-    /* background-repeat: no-repeat; */
-    /* background-position: center; */
     background-color:#004c8c; 
     font-family: 'Roboto', sans-serif;
     color: #000000; 
@@ -111,8 +109,7 @@ input[type=text]:focus {
 #gallery {
     padding-top: 10px;
     padding-bottom: 10px;
-    /* background-color: rgba(255, 255, 255, 0.7); */
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.75);
     border-radius: 5px;
 }
 
@@ -122,8 +119,6 @@ input[type=text]:focus {
     height: auto;
     padding-top: 1.04166666%;
     padding-bottom: 1.04166666%;
-    /* width: 300px;
-    height: 300px; */
     overflow: hidden;
     border-radius: 5px;
 }
@@ -148,11 +143,5 @@ footer {
     margin-top: 75px;
     margin-bottom: 75px;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
 }
-
- /* .weather-container, #search-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}  */
