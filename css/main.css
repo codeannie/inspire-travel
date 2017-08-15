@@ -26,7 +26,7 @@ h3 {
     font-size: 22px;
 }
 
-.demo_button {
+.demo_button, .search_button {
     position: absolute;
     top: 15px;
     right: 25px;
