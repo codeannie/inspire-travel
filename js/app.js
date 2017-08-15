@@ -8,7 +8,6 @@ const GOOGLE = {
 
 const W_UNDERGROUND = {
   forecast_url: 'https://api.wunderground.com/api/774b008f96e3393e/forecast/q/',
-  icons_url: 'https://icons.wxug.com/i/c/i/ICON.gif',
   key: '774b008f96e3393e'
 }
 
@@ -87,15 +86,18 @@ function getForecastData () {
 function renderForecastData (jsonWeather) {
   let weatherHTML = ''
 
-  $.each(jsonWeather.forecast.txt_forecast.forecastday, function (idx, forecastItem) {
+  //jsonWeather.forecast.txt_forecast.forecastday
+  $.each(jsonWeather.forecast.simpleforecast.forecastday, function (idx, forecastItem) {
     console.log(forecastItem)
     weatherHTML += (
 
       `<div class="col-3">
           <div class="weather-card">
-              <p class="forecast-day">${forecastItem.title} </p>
+              <p class="forecast-day">${getFormattedDate(forecastItem.date.epoch)}</p>
               <img class="forecast-icon" src="https://icons.wxug.com/i/c/i/${forecastItem.icon}.gif" alt="icon for ${forecastItem.icon}">
-              <p class="forecast-text"> ${forecastItem.fcttext} </p>
+              <p class="forecast-text"> High ${forecastItem.high.fahrenheit} °F</p>
+              <p class="forecast-text"> Low ${forecastItem.low.fahrenheit} °F</p> 
+              <p class="forecast-text"> ${forecastItem.conditions} </p> 
           </div>
       </div>`)
   })
