@@ -97,10 +97,8 @@ function getCityData() {
 
 function getForecastData(json_weather) {
     STATE.cityKey = json_weather.Key;  
+    let param = {apikey: ACCUWEATHER.key}
 
-    let param = {
-        apikey: ACCUWEATHER.key,
-    }
     $.getJSON(ACCUWEATHER.forecast_url + STATE.cityKey, param)
         .then (function (forecast) {
             const forecastElm = $(".weather-container");
@@ -215,3 +213,11 @@ function handleSubmit() {
     })
 }
 
+//Try Me button
+var Demo = function() {
+    STATE.geoLat = 21.3069444;
+    STATE.geoLng = -157.8583333;
+    STATE.cityName = "Honolulu, HI, USA";
+
+    renderPlace(STATE);
+}
