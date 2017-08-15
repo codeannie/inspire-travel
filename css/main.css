@@ -79,17 +79,23 @@ input[type=text]:focus {
     font-style: italic;
 }
 
+.location-time, .forecast-day, .forecast-text {
+    text-align: center;
+}
+
 .weather-card {
     width: 100%;
-    height: 230px; 
+    height: 200px; 
     margin-bottom: 5px;
     color: #ffffff;
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 5px;
 }  
 
-.location-time, .forecast-day, .forecast-text {
-    text-align: center;
+.forecast-day {
+    margin-top: 0;
+    padding: 10px;
+    background-color: rgba(0, 74, 201, 0.50);
 }
 
 .forecast-icon {
@@ -97,10 +103,8 @@ input[type=text]:focus {
     margin: auto;
 }
 
-.forecast-day {
-    margin-top: 0;
-    padding: 10px;
-    background-color: rgba(0, 74, 201, 0.50);
+.forecast-text {
+    margin: 5px;
 }
 
 .photo-title {
