@@ -21,7 +21,6 @@ const STATE = {
   googlePlace: null,
   geoLat: null,
   geoLng: null,
-  cityKey: null,
   cityName: null,
   cityTime: null,
 }
