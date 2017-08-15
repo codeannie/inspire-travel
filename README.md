@@ -29,7 +29,7 @@ HTML5, CSS, JavaScript, jQuery
 
 ### Icons:
 
-- Google Material
+- [Material.io](https://material.io/icons/)
 
 ### JavaScript
 
