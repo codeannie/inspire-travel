@@ -27,7 +27,7 @@ HTML5, CSS, JavaScript, jQuery
 
 ## Frameworks & APIs
 
-###Icons:
+### Icons:
 
 - Google Material
 
