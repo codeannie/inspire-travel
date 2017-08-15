@@ -169,7 +169,7 @@ function getPhotoData() {
         nojsoncallback: 1,
         privacy_filter: 1,
         safe_search: 1, 
-        per_page: 9,
+        per_page: 12,
     }
     $.getJSON(FLICKR.url, param)
         .then(function(json_photos) {
@@ -181,7 +181,7 @@ function getPhotoData() {
 
                 photoHTML += (
                     `
-                    <div class="col-4">
+                    <div class="grid-item">
                             <img class="thumbnail" src="https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg" alt="Image from ${STATE.cityName}">
                     </div>`
                 );
@@ -194,6 +194,18 @@ function getPhotoData() {
             console.log(err);
         })
 } 
+
+var grid = document.querySelector('.grid');
+var msnry;
+
+imagesLoaded( grid, function() {
+  // init Isotope after all images have loaded
+  msnry = new Masonry( grid, {
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true
+  });
+});
 
 //prevents submit to happen
 function handleSubmit() {
