@@ -160,7 +160,7 @@ function getPhotoData() {
     let param = {
         lat: `${STATE.geoLat}`,
         lon: `${STATE.geoLng}`,
-        tags: "nature, city, outdoor, fun, explore, travel",  
+        tags: "nature, city, outdoor, fun, explore, travel, indoor, adventure",  
         radius: 32,
         is_getty: "true",
         api_key: FLICKR.key,
