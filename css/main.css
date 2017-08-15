@@ -1,8 +1,8 @@
 body {
-    background-image: url("https://static.pexels.com/photos/386009/pexels-photo-386009.jpeg");
+    background: url("https://static.pexels.com/photos/386009/pexels-photo-386009.jpeg")no-repeat center center fixed;
     background-size: cover;
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
     background-color:#004c8c; 
     font-family: 'Roboto', sans-serif;
     color: #000000; 
@@ -73,7 +73,7 @@ input[type=text]:focus {
 }
 
 .location-time {
-    margin: 0 auto;
+    text-align: center;
 }
 
 .weather-card {
