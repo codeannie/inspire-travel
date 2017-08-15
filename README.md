@@ -42,4 +42,9 @@ HTML5, CSS, JavaScript, jQuery
 - AccuWeather
 - Flickr
 
-### Preview
+## Preview
+---
+
+./assets/inspiretravel_landing.png
+
+./assets/inspiretravel_photos.png
