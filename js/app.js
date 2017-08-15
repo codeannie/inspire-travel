@@ -86,7 +86,6 @@ function renderForecastData (jsonWeather) {
   let weatherHTML = ''
 
   $.each(jsonWeather.forecast.simpleforecast.forecastday, function (idx, forecastItem) {
-    console.log(forecastItem)
     weatherHTML += (
 
       `<div class="col-3">
