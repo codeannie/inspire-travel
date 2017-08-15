@@ -104,6 +104,10 @@ input[type=text]:focus {
     background-color: rgba(0, 74, 201, 0.50);
 }
 
+.photo-title {
+    color: #ffffff;
+}
+
 #gallery {
     padding-top: 10px;
     padding-bottom: 10px;
