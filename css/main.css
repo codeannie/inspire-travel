@@ -98,6 +98,7 @@ input[type=text]:focus {
 }
 
 .forecast-day {
+    margin-top: 0;
     padding: 10px;
     background-color: rgba(0, 74, 201, 0.50);
 }
