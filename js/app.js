@@ -25,7 +25,6 @@ const STATE = {
   cityKey: null,
   cityName: null,
   cityTime: null,
-  route: 'landing'
 }
 
 // don't load until DOM is ready
@@ -43,7 +42,6 @@ function initPlaces (inputElem) {
   var autocomplete = new google.maps.places.Autocomplete(inputElem, {types: ['(cities)']})
   autocomplete.addListener('place_changed', function () {
     STATE.googlePlace = autocomplete.getPlace()
-    console.log(STATE.googlePlace)
         // if there is no ID, we haven't gotten a real place
         // so we want to exit the function;
     if (!STATE.googlePlace.id) { return }
@@ -56,7 +54,7 @@ function initPlaces (inputElem) {
   })
 }
 
-function renderPlace (location) {
+function renderPlace () {
   getForecastData()
   getLocationTime()
   displayLocationName()
@@ -80,6 +78,7 @@ function getForecastData () {
     url: W_UNDERGROUND.forecast_url + `${STATE.geoLat},${STATE.geoLng}` + '.json?callback=',
     dataType: 'jsonp',
     success: function (response) {
+      console.log(response);
       renderForecastData(response)
     }
   })
@@ -91,10 +90,11 @@ function renderForecastData (jsonWeather) {
   $.each(jsonWeather.forecast.txt_forecast.forecastday, function (idx, forecastItem) {
     console.log(forecastItem)
     weatherHTML += (
+
       `<div class="col-3">
           <div class="weather-card">
               <p class="forecast-day">${forecastItem.title} </p>
-              <img class="forecast-icon" src="${forecastItem.icon_url}" width="75" height="45" alt="icon for ${forecastItem.icon}">
+              <img class="forecast-icon" src="https://icons.wxug.com/i/c/i/${forecastItem.icon}.gif" alt="icon for ${forecastItem.icon}">
               <p class="forecast-text"> ${forecastItem.fcttext} </p>
           </div>
       </div>`)
