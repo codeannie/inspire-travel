@@ -67,6 +67,7 @@ function renderPlace(location) {
     $(".results").prop("hidden", false);
     $(".landing").prop("hidden", true);
     $(".demo_button").prop("hidden", true); 
+    $(".search_button").prop("hidden", false); 
 }
 
 //DISPLAY LOCATION NAME
@@ -209,4 +210,13 @@ var Demo = function() {
     STATE.cityName = "Honolulu, HI, USA";
 
     renderPlace(STATE);
+}
+
+//Search Again button
+var searchAgain = function() {
+    $(".results").prop("hidden", true);
+    $(".landing").prop("hidden", false);
+    $(".demo_button").prop("hidden", false); 
+    $(".search_button").prop("hidden", true)
+    $('.js-searchLocation').empty();
 }
