@@ -43,7 +43,6 @@ HTML5, CSS, JavaScript, jQuery
 - Flickr
 
 ## Preview
----
 
 Landing Page: 
 ![screenshot of landing page](https://github.com/codeannie/inspire-travel/blob/master/assets/inspiretravel_landing.png)
