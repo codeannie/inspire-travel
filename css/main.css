@@ -47,6 +47,12 @@ button {
     border-radius: 5px;
 }
 
+.explain-box {
+    width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
 #search-form {
     width: 500px;
     margin: auto;
@@ -88,6 +94,11 @@ input[type=text]:focus {
     text-align: center;
 }
 
+.forecast-icon {
+    display: block;
+    margin: auto;
+}
+
 .forecast-day {
     padding: 10px;
     background-color: rgba(0, 74, 201, 0.50);
@@ -98,8 +109,9 @@ input[type=text]:focus {
     width: 300px;
     height: 300px;
     overflow: hidden;
-  }
-  .thumbnail img {
+}
+
+.thumbnail img {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -108,11 +120,12 @@ input[type=text]:focus {
     -webkit-transform: translate(-50%,-50%);
         -ms-transform: translate(-50%,-50%);
             transform: translate(-50%,-50%);
-  }
-  .thumbnail img.portrait {
+}
+
+.thumbnail img.portrait {
     width: 100%;
     height: auto;
-  }
+} 
 
 footer {
     margin-top: 75px;
