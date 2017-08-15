@@ -36,16 +36,6 @@ initPlaces(inputElem);
 handleSubmit();
 });
 
-//LANDING PAGE -- INITIAL LOAD
-// if(firstTimeUser) {
-//     initPlaces(inputElem)
-// }
-
-// function initShow() {
-//     let initPlace = $('.js-searchLocation').val("Honolulu, HI, United States");
-//     initPlaces(initPlace);
-// }
-
 //GET LOCATION 
 
 // Get information from Google API - lat, long, name 
@@ -68,14 +58,15 @@ function initPlaces(inputElem) {
     })
 }
 
-function renderPlace(state) {
+function renderPlace(location) {
     getCityData();
     getLocationTime();
     displayLocationName();
     getPhotoData();
     
     $(".results").prop("hidden", false);
-    $(".landing").prop("hidden", true); 
+    $(".landing").prop("hidden", true);
+    $(".demo_button").prop("hidden", true); 
 }
 
 //Display Location Name 
