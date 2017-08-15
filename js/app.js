@@ -77,7 +77,6 @@ function getForecastData () {
     url: W_UNDERGROUND.forecast_url + `${STATE.geoLat},${STATE.geoLng}` + '.json?callback=',
     dataType: 'jsonp',
     success: function (response) {
-      console.log(response);
       renderForecastData(response)
     }
   })
@@ -86,15 +85,14 @@ function getForecastData () {
 function renderForecastData (jsonWeather) {
   let weatherHTML = ''
 
-  //jsonWeather.forecast.txt_forecast.forecastday
   $.each(jsonWeather.forecast.simpleforecast.forecastday, function (idx, forecastItem) {
     console.log(forecastItem)
     weatherHTML += (
 
       `<div class="col-3">
           <div class="weather-card">
-              <p class="forecast-day">${getFormattedDate(forecastItem.date.epoch)}</p>
-              <img class="forecast-icon" src="https://icons.wxug.com/i/c/i/${forecastItem.icon}.gif" alt="icon for ${forecastItem.icon}">
+              <p class="forecast-day">${forecastItem.date.weekday_short}, ${forecastItem.date.month}/${forecastItem.date.day}/${forecastItem.date.year}</p>
+              <img class="forecast-icon" src="https://icons.wxug.com/i/c/k/${forecastItem.icon}.gif" alt="icon for ${forecastItem.conditions}">
               <p class="forecast-text"> High ${forecastItem.high.fahrenheit} °F</p>
               <p class="forecast-text"> Low ${forecastItem.low.fahrenheit} °F</p> 
               <p class="forecast-text"> ${forecastItem.conditions} </p> 
@@ -105,20 +103,6 @@ function renderForecastData (jsonWeather) {
   $('.weather-container')
         .empty()
         .append(weatherHTML)
-}
-
-function getFormattedDate (dtVal) {
-  let weekday = new Array(7)
-  weekday[0] = 'Sun'
-  weekday[1] = 'Mon'
-  weekday[2] = 'Tues'
-  weekday[3] = 'Wed'
-  weekday[4] = 'Thurs'
-  weekday[5] = 'Fri'
-  weekday[6] = 'Sat'
-  let dt = new Date(dtVal * 1000)
-  let dtString = `${weekday[dt.getDay()]}, ${dt.getMonth()}/${dt.getDate()}/${dt.getFullYear()}`
-  return dtString
 }
 
 // TIME
