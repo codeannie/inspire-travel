@@ -18,6 +18,14 @@ h1 {
     font-size: 38px;
 }
 
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 22px;
+}
+
 .demo_button {
     position: absolute;
     top: 15px;
@@ -84,7 +92,7 @@ input[type=text]:focus {
     height: 230px; 
     margin-bottom: 5px;
     color: #ffffff;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 5px;
 }  
 
@@ -99,7 +107,7 @@ input[type=text]:focus {
 
 .forecast-day {
     padding: 10px;
-    background-color: rgba(0, 74, 201, 0.60);
+    background-color: rgba(0, 74, 201, 0.50);
 }
 
 .thumbnail {
