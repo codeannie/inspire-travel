@@ -6,10 +6,10 @@ const GOOGLE = {
     key : "AIzaSyDWmnY0GfjllGfQUwp5ytwEcXudmS6axEo",
 };
 
-const ACCUWEATHER = {
-    geoposition_url: "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search",
-    forecast_url : "https://dataservice.accuweather.com/forecasts/v1/daily/5day/",
-    key : "cx6Pjbnt98biCTe5Gz68RhiLGWPK5Nrp",
+const W_UNDERGROUND = {
+    forecast_url: "https://api.wunderground.com/api/774b008f96e3393e/forecast/q/", 
+    icons_url: "https://icons.wxug.com/i/c/i/ICON.gif",
+    key : "774b008f96e3393e",
 };
 
 const FLICKR = {
@@ -43,7 +43,7 @@ function initPlaces(inputElem) {
     var autocomplete = new google.maps.places.Autocomplete(inputElem, {types: ['(cities)']});
     autocomplete.addListener('place_changed', function () {
         STATE.googlePlace = autocomplete.getPlace();
-
+        console.log(STATE.googlePlace);
         // if there is no ID, we haven't gotten a real place
         // so we want to exit the function;
         if (!STATE.googlePlace.id) 
@@ -58,7 +58,7 @@ function initPlaces(inputElem) {
 }
 
 function renderPlace(location) {
-    getCityData();
+    getForecastData();
     getLocationTime();
     displayLocationName();
     getPhotoData();
@@ -75,48 +75,41 @@ function displayLocationName() {
 }
 
 // WEATHER 
-
-//GET GEO DATA TO GET CITYKEY AND USE CITYKEY TO GET FORECAST API 
-function getCityData() {
-    let param = {
-        q : `${STATE.geoLat},${STATE.geoLng}`,
-        apikey: ACCUWEATHER.key,
-    }
-    $.getJSON(ACCUWEATHER.geoposition_url, param)
+function getForecastData() {
+    $.getJSON(W_UNDERGROUND.forecast_url + `${STATE.geoLat},${STATE.geoLng}` + "?callback=getForecastData")
         .then(getForecastData);
+        console.log(getForecastData);
 }
 
-function getForecastData(json_weather) {
-    STATE.cityKey = json_weather.Key;  
-    let param = {apikey: ACCUWEATHER.key}
+// function getForecastData(json_weather) {
+//     STATE.cityKey = json_weather.Key;  
+//     let param = {apikey: W_UNDERGROUND.key}
 
-    $.getJSON(ACCUWEATHER.forecast_url + STATE.cityKey, param)
-        .then (function (forecast) {
-            const forecastElm = $(".weather-container");
-            let weatherHTML = "";
-            for (var i = 0; i<forecast.DailyForecasts.length-1; i++) {
+//     $.getJSON(W_UNDERGROUND.forecast_url + STATE.cityKey, param)
+//         .then (function (forecast) {
+            
+//             const forecastElm = $(".weather-container");
+//             let weatherHTML = "";
+//             for (var i = 0; i<forecast.DailyForecasts.length-1; i++) {
 
-                let forecastItem = forecast.DailyForecasts[i];
-                forecastItem.Day.Icon = forecastItem.Day.Icon <= 9 ? '0' + forecastItem.Day.Icon : forecastItem.Day.Icon ;
-                //access to the item in the array 
-                //& pull out properties of the array in weatherHTML
+//                 let forecastItem = forecast.DailyForecasts[i];
 
-                weatherHTML += (
-                `<div class="col-3">
-                    <div class="weather-card">
-                        <p class="forecast-day">${getFormattedDate(forecastItem.EpochDate)} </p>
-                        <img class="forecast-icon" src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.Day.IconPhrase}">
-                        <p class="forecast-text"> High ${forecastItem.Temperature.Maximum.Value} °F</p>
-                        <p class="forecast-text"> Low ${forecastItem.Temperature.Minimum.Value} °F</p> 
-                        <p class="forecast-text"> ${forecastItem.Day.IconPhrase} </p>  
-                    </div>
-                </div>`);
-        }         
-            forecastElm
-                .empty()
-                .append(weatherHTML);
-    });
-}
+//                 weatherHTML += (
+//                 `<div class="col-3">
+//                     <div class="weather-card">
+//                         <p class="forecast-day">${getFormattedDate(forecastItem.EpochDate)} </p>
+//                         <img class="forecast-icon" src="https://developer.accuweather.com/sites/default/files/${forecastItem.Day.Icon}-s.png" width="75" height="45" alt="icon for ${forecastItem.Day.IconPhrase}">
+//                         <p class="forecast-text"> High ${forecastItem.Temperature.Maximum.Value} °F</p>
+//                         <p class="forecast-text"> Low ${forecastItem.Temperature.Minimum.Value} °F</p> 
+//                         <p class="forecast-text"> ${forecastItem.Day.IconPhrase} </p>  
+//                     </div>
+//                 </div>`);
+//         }         
+//             forecastElm
+//                 .empty()
+//                 .append(weatherHTML);
+//     });
+// }
 
 function getFormattedDate(dtVal) {
     let weekday = new Array(7);
