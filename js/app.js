@@ -48,7 +48,6 @@ function initPlaces(inputElem) {
         // so we want to exit the function;
         if (!STATE.googlePlace.id) 
             return; 
-        //need to add user facing alert
 
         STATE.geoLat = STATE.googlePlace.geometry.location.lat();
         STATE.geoLng = STATE.googlePlace.geometry.location.lng();
@@ -151,7 +150,6 @@ function getLocationTime () {
             STATE.cityTime = new Date((param.timestamp + dstOffset + rawOffset) * 1000);
 
             //Extra -  format input to remove GMT
-            //Extra - show time refreshed every minute
             $(".location-time").text(STATE.cityTime); 
         })
 }
