@@ -69,7 +69,7 @@ function renderPlace(location) {
     $(".demo_button").prop("hidden", true); 
 }
 
-//Display Location Name 
+//DISPLAY LOCATION NAME
 function displayLocationName() {
     $(".location-name").text(`${STATE.cityName}`);
 }
@@ -133,7 +133,6 @@ function getFormattedDate(dtVal) {
 }
 
 // TIME 
-
 function getLocationTime () {
     var targetDate = new Date() // Current date/time of user computer
     let param = {
@@ -162,7 +161,6 @@ function getPhotoData() {
         lat: `${STATE.geoLat}`,
         lon: `${STATE.geoLng}`,
         tags: "nature, city, outdoor, fun, explore, travel",  
-        // is_commons: "true",
         radius: 32,
         is_getty: "true",
         api_key: FLICKR.key,
