@@ -47,6 +47,12 @@ button {
     border-radius: 5px;
 }
 
+.explain-box {
+    width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
 #search-form {
     width: 500px;
     margin: auto;
@@ -88,11 +94,50 @@ input[type=text]:focus {
     text-align: center;
 }
 
+.forecast-icon {
+    display: block;
+    margin: auto;
+}
+
 .forecast-day {
     padding: 10px;
     background-color: rgba(0, 74, 201, 0.50);
 }
 
+/* force scrollbar */
+html { overflow-y: scroll; }
+/* body { font-family: sans-serif; } */
+
+/* ---- grid ---- */
+
+.grid {
+  background: #DDD;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+  width: 33.333%;
+}
+
+.grid-item {
+  float: left;
+}
+
+.grid-item img {
+  display: block;
+  width: 100%;
+}
+
+/* 
 .thumbnail {
     position: relative;
     width: 300px;
@@ -112,7 +157,7 @@ input[type=text]:focus {
   .thumbnail img.portrait {
     width: 100%;
     height: auto;
-  }
+  } */
 
 footer {
     margin-top: 75px;
