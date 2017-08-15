@@ -174,7 +174,7 @@ function getPhotoData() {
     $.getJSON(FLICKR.url, param)
         .then(function(json_photos) {
             const photosArr = json_photos.photos.photo;
-            let photoHTML = "";
+            let photoHTML = `<h3 class="photo-title">Photos from ${STATE.cityName} <i class="material-icons">photo_camera</i></h3>`;
 
             for (var i=0; i<photosArr.length; i++) {
                 var {farm, id, secret, server} = photosArr[i];
