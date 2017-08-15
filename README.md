@@ -45,6 +45,6 @@ HTML5, CSS, JavaScript, jQuery
 ## Preview
 ---
 
-./assets/inspiretravel_landing.png
+(https://github.com/codeannie/inspire-travel/blob/master/assets/inspiretravel_landing.png)
 
-./assets/inspiretravel_photos.png
+(https://github.com/codeannie/inspire-travel/blob/master/assets/inspiretravel_photos.png)
