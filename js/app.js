@@ -181,7 +181,7 @@ function getPhotoData() {
 
                 photoHTML += (
                     `
-                    <div class="col-4">
+                    <div class="col-6">
                             <img class="thumbnail" src="https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg" alt="Image from ${STATE.cityName}">
                     </div>`
                 );
