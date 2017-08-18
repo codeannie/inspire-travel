@@ -2,7 +2,7 @@
 # Inspire Travel
 ---
 
-Capstone project at Thinkful while learning about Async Requests.
+Capstone project at Thinkful based on using API calls.
 
 ## Introduction
 
