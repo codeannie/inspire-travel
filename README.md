@@ -16,7 +16,7 @@ This capstone utilizes Google Places API to get the destination's longitude and 
 Then using the coordinates, it does the following:
 
 - Calculate the location time from Google Maps Time Zone API
-- Look up the weather forecast from Weather Wunder API
+- Look up the weather forecast from Weather Wunderground API
 - Display photos taken within 32km from Flickr API 
 
 *Disclaimer regarding Flickr images: It is a bit of challenge to control the quality and type of photos from Flickr. The best I could do was to turn on Getty Images pool and filter by specific tags to get more "travel"-like photos.* 
