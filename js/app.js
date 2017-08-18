@@ -22,7 +22,7 @@ const STATE = {
   geoLat: null,
   geoLng: null,
   cityName: null,
-  cityTime: null,
+  cityTime: null
 }
 
 // don't load until DOM is ready
