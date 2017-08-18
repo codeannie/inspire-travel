@@ -148,12 +148,6 @@ input[type=text]:focus {
     height: auto;
 } 
 
-/* footer {
-    position: fixed; 
-    bottom: 0px;
-    width: 100%;
-} */
-
 footer {
     margin: 0 auto;
     width: 50%;
