@@ -21,9 +21,8 @@ const STATE = {
   googlePlace: null,
   geoLat: null,
   geoLng: null,
-  cityKey: null,
   cityName: null,
-  cityTime: null,
+  cityTime: null
 }
 
 // don't load until DOM is ready
@@ -86,7 +85,6 @@ function renderForecastData (jsonWeather) {
   let weatherHTML = ''
 
   $.each(jsonWeather.forecast.simpleforecast.forecastday, function (idx, forecastItem) {
-    console.log(forecastItem)
     weatherHTML += (
 
       `<div class="col-3">
