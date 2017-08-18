@@ -29,8 +29,8 @@ const STATE = {
 // for DOM related functions
 $(function () {
   const inputElem = $('.js-searchLocation')[0]
-  initPlaces(inputElem)
-  handleSubmit()
+  initPlaces(inputElem);
+  handleSubmit();
 })
 
 // GET LOCATION
@@ -58,15 +58,15 @@ function renderPlace () {
   displayLocationName()
   getPhotoData()
 
-  $('.results').prop('hidden', false)
-  $('.landing').prop('hidden', true)
-  $('.demo_button').prop('hidden', true)
-  $('.search_button').prop('hidden', false)
+  $('.results').prop('hidden', false);
+  $('.landing').prop('hidden', true);
+  $('.demo_button').prop('hidden', true);
+  $('.search_button').prop('hidden', false);
 }
 
 // DISPLAY LOCATION NAME
 function displayLocationName () {
-  $('.location-name').text(`${STATE.cityName}`)
+  $('.location-name').text(`${STATE.cityName}`);
 }
 
 // WEATHER
@@ -100,7 +100,7 @@ function renderForecastData (jsonWeather) {
 
   $('.weather-container')
         .empty()
-        .append(weatherHTML)
+        .append(weatherHTML);
 }
 
 // TIME
@@ -114,14 +114,14 @@ function getLocationTime () {
   }
   $.getJSON(GOOGLE.timezone_url, param)
         .then(function (json_time) {
+          var daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"]
           var dstOffset = json_time.dstOffset
           var rawOffset = json_time.rawOffset
           var timeZone = json_time.timeZoneId
 
           STATE.cityTime = new Date((param.timestamp + dstOffset + rawOffset) * 1000)
-
-            // Extra -  format input to remove GMT
-          $('.location-time').text(STATE.cityTime)
+          
+          $('.location-time').text(`${daysOfWeek[STATE.cityTime.getDay()]}, ${STATE.cityTime.toLocaleString()}`);
         })
 }
 
@@ -157,7 +157,7 @@ function getPhotoData () {
           }
           $('#gallery')
                     .empty()
-                    .append(photoHTML)
+                    .append(photoHTML);
         }).catch(function (err) {
           console.log(err)
         })
@@ -182,9 +182,9 @@ var Demo = function () {
 
 // Search Again button
 var searchAgain = function () {
-  $('.results').prop('hidden', true)
-  $('.landing').prop('hidden', false)
-  $('.demo_button').prop('hidden', false)
-  $('.search_button').prop('hidden', true)
-  $('.js-searchLocation').empty()
+  $('.results').prop('hidden', true);
+  $('.landing').prop('hidden', false);
+  $('.demo_button').prop('hidden', false);
+  $('.search_button').prop('hidden', true);
+  $('.js-searchLocation').empty();
 }
