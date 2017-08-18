@@ -6,6 +6,10 @@ body {
     color: #000000; 
 }
 
+main {
+    min-height: 600px;
+}
+
 h1, h2, h3 {
     font-family: 'Poppins', sans-serif; 
     text-align: center;
@@ -144,9 +148,15 @@ input[type=text]:focus {
     height: auto;
 } 
 
+/* footer {
+    position: fixed; 
+    bottom: 0px;
+    width: 100%;
+} */
+
 footer {
-    width: 45%;
     margin: 0 auto;
+    width: 50%;
     margin-top: 75px;
     margin-bottom: 75px;
     text-align: center;
